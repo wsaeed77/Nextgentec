@@ -33,7 +33,7 @@ class UserController extends Controller
         //$users = User::where('role_id','<>',$this->admin)->get();
         $users = User::get();
             
-        return view('admin.users.index',compact('users','controller'));
+        return view('admin.users.index', compact('users', 'controller'));
     }
 
     /**
@@ -44,7 +44,7 @@ class UserController extends Controller
     public function create()
     {
          $roles = Role::select(['id','display_name'])->get();
-        return view('admin.users.add',compact('roles'));
+        return view('admin.users.add', compact('roles'));
         //
     }
 
@@ -67,10 +67,11 @@ class UserController extends Controller
         
         $user->save();
 
-        if($request->role)
-        $user->attachRole($request->role);
+        if ($request->role) {
+            $user->attachRole($request->role);
+        }
         //role
-        return redirect()->intended('admin/user'); 
+        return redirect()->intended('admin/user');
     }
 
     /**
@@ -96,14 +97,12 @@ class UserController extends Controller
         $user = User::find($id);
         $roles = Role::select(['id','display_name'])->get();
         //dd($user->roles);
-        if($user->roles)
-       {
-            foreach( $user->roles as $role )
-            {
+        if ($user->roles) {
+            foreach ($user->roles as $role) {
                 $user_role = $role->id;
             }
         }
-        return view('admin.users.add',compact('user','roles','user_role'));
+        return view('admin.users.add', compact('user', 'roles', 'user_role'));
     }
 
     /**
@@ -117,18 +116,18 @@ class UserController extends Controller
     {
         //$flight = App\Flight::find(1);
         $user = User::find($id);
-       $user->f_name = $request->f_name;
+        $user->f_name = $request->f_name;
         $user->l_name = $request->l_name;
         $user->email = $request->email;
 
-        if (!empty($request->password))
-        {
-           $user->password = bcrypt($request->password);
+        if (!empty($request->password)) {
+            $user->password = bcrypt($request->password);
         }
         
         $user->detachRoles($user->roles);
-        if($request->role)
-        $user->attachRole($request->role);
+        if ($request->role) {
+            $user->attachRole($request->role);
+        }
         $user->save();
         return redirect()->intended('admin/user');
     }

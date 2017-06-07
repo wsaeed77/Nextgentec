@@ -1,7 +1,6 @@
 <?php
 namespace App\Modules\Crm\Http\Controllers;
 
-
 use Illuminate\Foundation\Http\FormRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -17,38 +16,36 @@ use Session;
 use Response;
 use App\Modules\Crm\Http\Customer;
 
-class FilemanagerController extends Controller {
+class FilemanagerController extends Controller
+{
     public $path ;
     public $folder;
 
-    public function __construct(){
+    public function __construct()
+    {
 
         $this->setPath();
     }
-    public function getIndex(){
+    public function getIndex()
+    {
 
-         if(!empty(Session::get('cust_id')))
-
+        if (!empty(Session::get('cust_id'))) {
             $customer = Customer::find(Session::get('cust_id'));
+        }
         $folder = $this->folder;
-        return view('crm::crm.file_manager',compact('customer','folder'));
+        return view('crm::crm.file_manager', compact('customer', 'folder'));
     }
 
 
-    public function setPath(){
-         if(!empty(Session::get('cust_id')))
-        {
+    public function setPath()
+    {
+        if (!empty(Session::get('cust_id'))) {
             $customer = Customer::find(Session::get('cust_id'));
 
-            if($customer->folder!='')
-            {
+            if ($customer->folder!='') {
                 $this->path = storage_path('customer_files/'.$customer->folder);
                 $this->folder = $customer->folder;
-
-
-            }
-            else
-            {
+            } else {
                 $uuid = $this->generateGuid();
                 $this->path = storage_path('customer_files/'.$uuid);
                 $this->folder = $uuid;
@@ -60,15 +57,11 @@ class FilemanagerController extends Controller {
                  $customer->save();
             }
         }
-
-
-
     }
-   public function getConnection()
+    public function getConnection()
     {
-        if(!empty(Session::get('cust_id')))
-        {
-          $extra = array(
+        if (!empty(Session::get('cust_id'))) {
+            $extra = array(
                           "source" => $this->path,//$path,
                           "url" => url('/'),
                           "doc_root"=>'',
@@ -91,66 +84,66 @@ class FilemanagerController extends Controller {
     public function postConnection()
     {
 
-         if(!empty(Session::get('cust_id')))
-        {
-
-                $extra = array(
-                               "source" => $this->path,
-                               "url" => url('/'),
-                               "doc_root"=>'',
-                               'c_folder' => $this->folder,
-                               "ext" => array("jpg","jpeg","gif","png","svg","txt","pdf","odp","ods","odt","rtf","doc","docx","xls","xlsx","ppt","pptx","csv","ogv","mp4","webm","m4v","ogg","mp3","wav","zip","rar"),
-                                "upload" => array(
-                                    "number" => 5,
-                                    "overwrite" => false,
-                                    "size_max" => 10
-                                    ),
-                                "images" => array(
-                                    "images_ext" => array("jpg","jpeg","gif","png"),
-                                    "resize" => array("thumbWidth" => 120,"thumbHeight" => 90)
-                                    ),
-                            );
+        if (!empty(Session::get('cust_id'))) {
+              $extra = array(
+                             "source" => $this->path,
+                             "url" => url('/'),
+                             "doc_root"=>'',
+                             'c_folder' => $this->folder,
+                             "ext" => array("jpg","jpeg","gif","png","svg","txt","pdf","odp","ods","odt","rtf","doc","docx","xls","xlsx","ppt","pptx","csv","ogv","mp4","webm","m4v","ogg","mp3","wav","zip","rar"),
+                              "upload" => array(
+                                  "number" => 5,
+                                  "overwrite" => false,
+                                  "size_max" => 10
+                                  ),
+                              "images" => array(
+                                  "images_ext" => array("jpg","jpeg","gif","png"),
+                                  "resize" => array("thumbWidth" => 120,"thumbHeight" => 90)
+                                  ),
+                          );
 
 
-                if(isset($_POST['typeFile']) && $_POST['typeFile']=='images'){
-                    $extra['type_file'] = 'images';
-                }
+            if (isset($_POST['typeFile']) && $_POST['typeFile']=='images') {
+                $extra['type_file'] = 'images';
+            }
                 $f = new FilemanagerService($extra);
 
                 $f->run();
         }
     }
 
-    private function generateGuid() {
-        $s = strtoupper(md5(uniqid(rand(),true)));
+    private function generateGuid()
+    {
+        $s = strtoupper(md5(uniqid(rand(), true)));
         $guidText =
-            substr($s,0,8) . '-' .
-            substr($s,8,4) . '-' .
-            substr($s,12,4). '-' .
-            substr($s,16,4). '-' .
-            substr($s,20);
+            substr($s, 0, 8) . '-' .
+            substr($s, 8, 4) . '-' .
+            substr($s, 12, 4). '-' .
+            substr($s, 16, 4). '-' .
+            substr($s, 20);
         return $guidText;
-        }
-
-    public function retrieveFile($folder,$filename) {
-      $path = storage_path('customer_files/'.$folder.'/'.$filename);
-      $ext  = File::extension($filename);
-
-      $mime = explode('/',mime_content_type($path));
-
-      if($mime[1] == 'image') {
-        Image::make($path)->response();
-      }
-      else {
-        return Response::make(file_get_contents($path), 200, [
-            'Content-Type' => mime_content_type($path),
-            'Content-Disposition' => 'inline; filename="'.$filename.'"'
-        ]);
-      }
     }
 
-    public function retrieveThumb($folder,$filename) {
-      $path = storage_path('customer_files/'.$folder.'/_thumbs/'.$filename);
-      return Image::make($path)->response();
+    public function retrieveFile($folder, $filename)
+    {
+        $path = storage_path('customer_files/'.$folder.'/'.$filename);
+        $ext  = File::extension($filename);
+
+        $mime = explode('/', mime_content_type($path));
+
+        if ($mime[1] == 'image') {
+            Image::make($path)->response();
+        } else {
+            return Response::make(file_get_contents($path), 200, [
+            'Content-Type' => mime_content_type($path),
+            'Content-Disposition' => 'inline; filename="'.$filename.'"'
+            ]);
+        }
+    }
+
+    public function retrieveThumb($folder, $filename)
+    {
+        $path = storage_path('customer_files/'.$folder.'/_thumbs/'.$filename);
+        return Image::make($path)->response();
     }
 }

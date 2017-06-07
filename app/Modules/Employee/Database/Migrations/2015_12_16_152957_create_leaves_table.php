@@ -5,14 +5,14 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateLeavesTable extends Migration
 {
-	/**
-	 * Run the migrations.
-	 *
-	 * @return void
-	 */
-	public function up()
-	{
-		   Schema::create('leaves', function (Blueprint $table) {
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+           Schema::create('leaves', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id');
             $table->string('title', 15);
@@ -26,19 +26,18 @@ class CreateLeavesTable extends Migration
             $table->text('comments');
             $table->enum('type', ['annual', 'sick']);
             $table->enum('status', ['pending','approved','rejected']);
-           	$table->tinyInteger('google_post');
-           	$table->string('google_id',50);
-            
-        });
-	}
+            $table->tinyInteger('google_post');
+            $table->string('google_id', 50);
+           });
+    }
 
-	/**
-	 * Reverse the migrations.
-	 *
-	 * @return void
-	 */
-	public function down()
-	{
-		Schema::drop('leaves');
-	}
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::drop('leaves');
+    }
 }

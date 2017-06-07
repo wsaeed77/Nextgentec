@@ -6,16 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class VendorDatabaseSeeder extends Seeder
 {
-	/**
-	 * Run the database seeds.
-	 *
-	 * @return void
-	 */
-	public function run()
-	{
-		Model::unguard();
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        Model::unguard();
 
-		// $this->call('App\ModulesVendor\Database\Seeds\FoobarTableSeeder');
-	}
-
+        // $this->call('App\ModulesVendor\Database\Seeds\FoobarTableSeeder');
+    }
 }

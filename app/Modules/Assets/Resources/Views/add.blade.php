@@ -45,25 +45,24 @@
 
                             <div class="form-group col-lg-6">
                               <label>Customer</label>
-                             <?php if((session('cust_id')!='') && (session('customer_name')!=''))
-                               {
+                             <?php if ((session('cust_id')!='') && (session('customer_name')!='')) {
                                   $selected_cust = session('cust_id');?>
                                   {!! Form::text('customername', session('customer_name'), ['class' => 'form-control', 'readonly' => 'true']) !!}
                                   {!! Form::hidden('customer', $selected_cust) !!}
 
-                          <?php } else{ ?>
+                                <?php } else { ?>
                                         {!! Form::select('customer', $customers, '',['class'=>'form-control multiselect','placeholder' => 'Pick a Customer','onChange'=>'load_service_items(this.value)'])!!}
-                           <?php } ?>
+                             <?php } ?>
 
                             </div>
 
                             <div class="form-group col-lg-6">
                               <label>Location</label>
-                             <?php $locations = [];?>
+                                <?php $locations = [];?>
                              {!! Form::select('location', $locations,'',['class'=>'form-control multiselect','placeholder' => 'Pick a Location', 'id'=>'locations'])!!}
                             </div>
 
-                             <?php $asset_types = ['network'=>'Network',
+                                <?php $asset_types = ['network'=>'Network',
                                                     'gateway' => 'Gateway',
                                                     'pbx'=>'PBX',
                                                     'server'=>'Server'];?>
@@ -315,12 +314,11 @@ $(document).ready(function()
 
         $('.datepicker').datepicker();
 
-    <?php if((session('cust_id')!='') && (session('customer_name')!=''))
-     {?>
+    <?php if ((session('cust_id')!='') && (session('customer_name')!='')) {?>
 
      load_service_items(<?php echo session('cust_id');?>);
 
-     <?php } ?>
+    <?php } ?>
 
 
 

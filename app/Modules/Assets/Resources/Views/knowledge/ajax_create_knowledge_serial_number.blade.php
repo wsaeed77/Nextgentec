@@ -11,16 +11,15 @@
         <form id="create_serial_number">
             <div class="form-group col-lg-12">
                 <label>Customer</label>
-                <?php if((session('cust_id')!='') && (session('customer_name')!=''))
-                 {
+                <?php if ((session('cust_id')!='') && (session('customer_name')!='')) {
                     $selected_cust = session('cust_id');?>
 
                   {!! Form::select('customer', $customers,$selected_cust,['class'=>'form-control multiselect','placeholder' => 'Pick a Customer','disabled'=>'','id'=>'customer'])!!}
-                     <?php } else{ ?>
+                <?php } else { ?>
 
                        {!! Form::select('customer', $customers,'',['class'=>'form-control multiselect','placeholder' => 'Pick a Customer'])!!}
 
-                      <?php } ?>
+                <?php } ?>
 
 
 
@@ -38,14 +37,14 @@
             </div>
 
             <div class="form-group col-lg-12">
-  	            <label>Notes</label>
-  	            {!! Form::textarea('notes',null, ['placeholder'=>"Notes",'class'=>"form-control textarea",'id'=>'serial_notes','rows'=>10]) !!}
-  	        </div>
+                <label>Notes</label>
+                {!! Form::textarea('notes',null, ['placeholder'=>"Notes",'class'=>"form-control textarea",'id'=>'serial_notes','rows'=>10]) !!}
+            </div>
         </form>
 <div class="clearfix"></div>
       </div>
       <div class="modal-footer">
-      <?php //$route  = $route;?>
+        <?php //$route  = $route;?>
 
           <!-- <input type="hidden" name="_token" value="{{ csrf_token() }}"> -->
 

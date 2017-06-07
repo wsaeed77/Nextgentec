@@ -5,14 +5,14 @@ use Illuminate\Database\Migrations\Migration;
 
 class Tickets extends Migration
 {
-	/**
-	 * Run the migrations.
-	 *
-	 * @return void
-	 */
-	public function up()
-	{
-		Schema::create('tickets', function (Blueprint $table) {
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('tickets', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('customer_id');
             $table->integer('created_by');
@@ -20,12 +20,10 @@ class Tickets extends Migration
             $table->date('updated_at');
             $table->integer('location_id');
             $table->integer('service_item_id');
-            $table->string('title',15);
+            $table->string('title', 15);
             $table->text('body');
-           $table->enum('status',['open','closed','pending']);
-           $table->enum('priority',['low','normal','high']);
-
-            
+            $table->enum('status', ['open','closed','pending']);
+            $table->enum('priority', ['low','normal','high']);
         });
 
         Schema::create('attachments', function (Blueprint $table) {
@@ -34,11 +32,8 @@ class Tickets extends Migration
             $table->date('created_at');
             $table->date('updated_at');
            
-            $table->string('name',256);
-            $table->string('type',100);
-         
-
-            
+            $table->string('name', 256);
+            $table->string('type', 100);
         });
 
         Schema::create('responses', function (Blueprint $table) {
@@ -46,11 +41,8 @@ class Tickets extends Migration
             $table->integer('ticket_id');
             $table->dateTime('created_at');
             $table->date('updated_at');
-          	$table->integer('responder_id');
+            $table->integer('responder_id');
             $table->text('body');
-           
-
-            
         });
 
         Schema::create('ticket_user', function (Blueprint $table) {
@@ -59,22 +51,19 @@ class Tickets extends Migration
              $table->integer('user_id');
             $table->dateTime('created_at');
             $table->date('updated_at');
-        
-
-            
         });
-	}
+    }
 
-	/**
-	 * Reverse the migrations.
-	 *
-	 * @return void
-	 */
-	public function down()
-	{
-		/*Schema::drop('tickets');
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        /*Schema::drop('tickets');
 		Schema::drop('responses');
 		Schema::drop('ticket_user');
         Schema::drop('attachments');*/
-	}
+    }
 }

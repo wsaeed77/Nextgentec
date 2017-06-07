@@ -22,7 +22,7 @@
       </div>
       <div class="modal-footer">
       <?php //$route  = $route;
-      ?>
+        ?>
       
           <button type="button" class="btn btn-default"
                   data-dismiss="modal" id="close_asset_create_role">Close</button>

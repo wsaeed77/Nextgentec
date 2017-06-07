@@ -9,5 +9,4 @@ class Config extends Model
     protected $table = 'config';
 
     protected $fillable = ['title','key','value'];
-
 }

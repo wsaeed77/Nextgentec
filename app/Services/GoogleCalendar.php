@@ -3,7 +3,8 @@
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Config;
 
-class GoogleCalendar {
+class GoogleCalendar
+{
 
     protected $client;
 
@@ -11,7 +12,8 @@ class GoogleCalendar {
     protected $event;
     protected $calendarId;
 
-    function __construct() {
+    function __construct()
+    {
         /* Get config variables */
         $client_id = Config::get('google.client_id');
         $this->calendarId = Config::get('google.calendar_id');
@@ -26,7 +28,7 @@ class GoogleCalendar {
 
         /* If we have an access token */
         if (Cache::has('service_token')) {
-          $this->client->setAccessToken(Cache::get('service_token'));
+            $this->client->setAccessToken(Cache::get('service_token'));
         }
 
         $key = file_get_contents($key_file_location);
@@ -40,7 +42,7 @@ class GoogleCalendar {
 
         $this->client->setAssertionCredentials($cred);
         if ($this->client->getAuth()->isAccessTokenExpired()) {
-          $this->client->getAuth()->refreshTokenWithAssertion($cred);
+            $this->client->getAuth()->refreshTokenWithAssertion($cred);
         }
         Cache::forever('service_token', $this->client->getAccessToken());
     }
@@ -57,37 +59,40 @@ class GoogleCalendar {
 
         $event = $this->service->events->insert($this->calendarId, $event);
         //printf('Event created: %s\n', $event->htmlLink);
-        if($event)
-        return $event;
+        if ($event) {
+            return $event;
+        }
     }
     function eventList($startDate = null, $endDate = null)
     {
-      $params = array();
-      if (isset($startDate))
-        $params['timeMin'] = $startDate . 'T00:00:00-05:00';
-      if (isset($endDate))
-        $params['timeMax'] = $endDate . 'T23:59:59-05:00';
+        $params = array();
+        if (isset($startDate)) {
+            $params['timeMin'] = $startDate . 'T00:00:00-05:00';
+        }
+        if (isset($endDate)) {
+            $params['timeMax'] = $endDate . 'T23:59:59-05:00';
+        }
 
-      $events = $this->service->events->listEvents($this->calendarId, $params);
-      return $events;
+        $events = $this->service->events->listEvents($this->calendarId, $params);
+        return $events;
     }
 
 
     function event($id)
-    {   
+    {
 
-      $event = $this->service->events->get($this->calendarId, $id);
-      return $event;
+        $event = $this->service->events->get($this->calendarId, $id);
+        return $event;
     }
     function eventDelete($event_id)
     {
         $this->service->events->delete($this->calendarId, $event_id);
         //$events = $this->service->events->listEvents($this->calendarId);
 
-       return true;
+        return true;
     }
 
-    function eventUpdate($eventId,$data)
+    function eventUpdate($eventId, $data)
     {
             $event = $this->service->events->get($this->calendarId, $eventId);
 
@@ -109,6 +114,5 @@ class GoogleCalendar {
             //return $updatedEvent->getUpdated();
             return $updatedEvent;
             //return true;
-
     }
 }

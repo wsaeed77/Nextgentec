@@ -17,17 +17,18 @@ use Zizaco\Entrust\Traits\EntrustUserTrait;
                                     CanResetPasswordContract*/
                                     
 
-class User extends Model implements AuthenticatableContract,
-                                    AuthorizableContract,
-                                    CanResetPasswordContract
+class User extends Model implements
+    AuthenticatableContract,
+    AuthorizableContract,
+    CanResetPasswordContract
 {
     //use EntrustUserTrait; // add this trait to your user model
 
 
-   use Authenticatable, Authorizable, CanResetPassword,  EntrustUserTrait {
-      EntrustUserTrait::can as may;
+    use Authenticatable, Authorizable, CanResetPassword,  EntrustUserTrait {
+        EntrustUserTrait::can as may;
         EntrustUserTrait::can insteadof Authorizable;
-        }
+    }
     //use Authenticatable, Authorizable, CanResetPassword;
 
     /**
@@ -55,24 +56,24 @@ class User extends Model implements AuthenticatableContract,
     {
         return $this->hasOne('App\Modules\Employee\Http\Employee');
     }
-     public function raise()
+    public function raise()
     {
         return $this->hasMany('App\Modules\Employee\Http\Raise');
     }
     
-     public function leave()
+    public function leave()
     {
-        return $this->hasMany('App\Modules\Employee\Http\Leave','posted_for');
+        return $this->hasMany('App\Modules\Employee\Http\Leave', 'posted_for');
     }
 
 
 
-     public function created_tickets()
+    public function created_tickets()
     {
-        return $this->hasMany('App\Modules\Crm\Http\Ticket','created_by');
+        return $this->hasMany('App\Modules\Crm\Http\Ticket', 'created_by');
     }
 
-     public function assigned_tickets()
+    public function assigned_tickets()
     {
         return $this->belongsToMany('App\Modules\Crm\Http\Ticket')->withTimestamps();
     }
@@ -86,5 +87,4 @@ class User extends Model implements AuthenticatableContract,
     {
         return $this->hasMany('App\Modules\UserDevicesExtention');
     }
-
 }

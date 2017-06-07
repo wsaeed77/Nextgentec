@@ -124,7 +124,7 @@
                      
                   </div>
 
-              <?php //$rates = [''=>'Pick a default rate'];?>
+                <?php //$rates = [''=>'Pick a default rate'];?>
               <div class="form-group col-lg-12">
                   <label>Default Rate</label>
                   <select name="default_rate" class="form-control multiselect" id="default_rate">
@@ -139,7 +139,7 @@
               </div>
               <div class="form-group col-lg-12">
                   <label>Additional Rates</label>
-                  <?php //$additional_rates = [];?>
+                    <?php //$additional_rates = [];?>
 
                   <select name="additional_rates[]" class="form-control multiselect" multiple id="additional_rate">
                   @foreach($service_item->rates as $rate)

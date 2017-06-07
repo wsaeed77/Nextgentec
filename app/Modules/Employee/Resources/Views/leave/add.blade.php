@@ -72,25 +72,22 @@
 
                         <div class="form-group col-lg-5" id="time_div" style="display: none">
                             <label>Duration</label>
-                             <?php
+                                <?php
                             
-                              $duration = [];
-                             for($h=1; $h<=4;$h++) {
-                            
-                               for($m=0; $m<=45;$m=$m+15) {
-                                  if($m==0)
-                                  {
-                                    $m="00";
-                                  }
-                                 $duration[$h.'.'.(($m*100)/60)] = '0'.$h.':'.$m.' Hours';
+                                $duration = [];
+                                for ($h=1; $h<=4; $h++) {
+                                    for ($m=0; $m<=45; $m=$m+15) {
+                                        if ($m==0) {
+                                            $m="00";
+                                        }
+                                            $duration[$h.'.'.(($m*100)/60)] = '0'.$h.':'.$m.' Hours';
                                  
-                                 if($h==4)
-                                  break;
-
-                               }
-
-                             }
-                          ?>
+                                        if ($h==4) {
+                                            break;
+                                        }
+                                    }
+                                }
+                            ?>
                            {!! Form::select('duration_short', $duration,'',['class'=>'form-control multiselect','placeholder' => 'leave duration'])!!}
                         </div>
 

@@ -10,12 +10,6 @@ class Attachment extends Model
    
     public function ticket()
     {
-        return $this->belongsTo('App\Modules\Crm\Http\Ticket','location_id');
+        return $this->belongsTo('App\Modules\Crm\Http\Ticket', 'location_id');
     }
-
-   
-   
-
-
-    
 }

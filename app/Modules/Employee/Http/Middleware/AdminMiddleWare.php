@@ -8,7 +8,7 @@ use Illuminate\Contracts\Auth\Guard;
 class AdminMiddleWare
 {
   
-protected $auth;
+    protected $auth;
 
     /**
      * Create a new filter instance.

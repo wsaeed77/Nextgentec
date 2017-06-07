@@ -6,11 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-  protected $table = 'products';
+    protected $table = 'products';
 
-  public function assigned_tickets()
-  {
-    return $this->belongsToMany('App\Modules\Crm\Http\Customer');
-  }
-
+    public function assigned_tickets()
+    {
+        return $this->belongsToMany('App\Modules\Crm\Http\Customer');
+    }
 }

@@ -7,13 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class Vendor extends Model
 {
 
-	 public function customers()
+    public function customers()
     {
         return $this->belongsToMany('App\Modules\Crm\Http\Customer')->withTimestamps()
-        ->withPivot('id','auth_contact_name','phone_number','account_number','portal_url','notes','location_id');
+        ->withPivot('id', 'auth_contact_name', 'phone_number', 'account_number', 'portal_url', 'notes', 'location_id');
     }
 
-     public function contacts()
+    public function contacts()
     {
         return $this->hasMany('App\Modules\Vendor\Http\VendorContact');
     }
@@ -22,12 +22,13 @@ class Vendor extends Model
     {
         return $this->belongsToMany('App\Modules\Crm\Http\CustomerLocation', 'customer_vendor', 'vendor_id', 'location_id');
     }
-    public function location(){
+    public function location()
+    {
         return $this->belongsToMany('App\Modules\Crm\Http\CustomerLocation', 'customer_vendor', 'vendor_id', 'location_id');
     }
     public function password()
     {
-        return $this->hasOne('App\Modules\Assets\Http\KnowledgePassword','vendor_id');
+        return $this->hasOne('App\Modules\Assets\Http\KnowledgePassword', 'vendor_id');
     }
 
    

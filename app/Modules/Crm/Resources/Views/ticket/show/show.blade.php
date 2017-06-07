@@ -56,7 +56,7 @@
 
    <?php //echo '<pre>';
    //dd($ticket);
-   ?>
+    ?>
 
    <div class="clearfix"></div>
  </div>
@@ -94,7 +94,7 @@
 
              <div class="timeline-body">
               {{--  urldecode($ticket->body) --}}
-              <?php echo $ticket->body;?>
+                <?php echo $ticket->body;?>
             </div>
 
 
@@ -535,13 +535,13 @@
         var item;
 
         <?php foreach ($statuses as $status) {
-          ?>
+            ?>
 
           item = {id:"<?php echo $status->id; ?>",text : "<?php echo $status->text; ?>"};
 
           statusData.push(item);
 
-          <?php 
+            <?php
         } ?>
 
         $('#ticket_status').editable({

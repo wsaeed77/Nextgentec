@@ -30,6 +30,4 @@ class countNewLeaves extends Event
     {
         return ['action-did-occur'];
     }
-
-
 }

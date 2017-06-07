@@ -30,55 +30,59 @@ use URL;
 use Datatables;
 
 use Session;
+
 class AppointmentController extends Controller
 {
 
-	function postEvent(Request $request)
+    function postEvent(Request $request)
     {
 
 
-      $panctuality[0] = 'As scheduled' ;
-      $panctuality[1] = '1 Hour Window' ;
-      $panctuality[2] = '2 Hour Window' ;
-      $panctuality[3] = '3 Hour Window' ;
-      $panctuality[4] = 'Same Day' ;
-      $panctuality[5] = 'Tentative' ;
+        $panctuality[0] = 'As scheduled' ;
+        $panctuality[1] = '1 Hour Window' ;
+        $panctuality[2] = '2 Hour Window' ;
+        $panctuality[3] = '3 Hour Window' ;
+        $panctuality[4] = 'Same Day' ;
+        $panctuality[5] = 'Tentative' ;
 
         
-      $location = CustomerLocation::find($request->location_index);
-      $technician = User::find($request->employee_index);
-      $contact = CustomerLocationContact::find($request->contact_index);
-      $service = CustomerServiceItem::find($request->appointment_against) ;
+        $location = CustomerLocation::find($request->location_index);
+        $technician = User::find($request->employee_index);
+        $contact = CustomerLocationContact::find($request->contact_index);
+        $service = CustomerServiceItem::find($request->appointment_against) ;
 
-      $timeframe = ' &#177; '.$request->timeframe;
-      if($request->timeframe==4)
-        $timeframe = 'SDY';
+        $timeframe = ' &#177; '.$request->timeframe;
+        if ($request->timeframe==4) {
+            $timeframe = 'SDY';
+        }
 
-      if($request->timeframe==5)
-        $timeframe = 'TTV';
+        if ($request->timeframe==5) {
+            $timeframe = 'TTV';
+        }
 
-        $date_arr = explode(',',$request->calander_data);
+        $date_arr = explode(',', $request->calander_data);
      
 
         $calendar   = new GoogleCalendar;
        
-       $description = 'Location : '.$location->location_name;
+        $description = 'Location : '.$location->location_name;
         $description .= ' Technician : '.$technician->f_name.' '.$technician->l_name;
         $description .= ' Contact : '.$contact->f_name.' '.$contact->l_name;
         $description .= ' Punctuality : '.$panctuality[$request->timeframe];
-        if($service)
-        $description .= ' Against : '.$service->title;
-        $description .= ' Start time : '.date("H:i:s",strtotime($date_arr[0]));
-        $description .= ' End time : '.date("H:i:s",strtotime($date_arr[1]));
+        if ($service) {
+            $description .= ' Against : '.$service->title;
+        }
+        $description .= ' Start time : '.date("H:i:s", strtotime($date_arr[0]));
+        $description .= ' End time : '.date("H:i:s", strtotime($date_arr[1]));
 
         $description .= ' Notes : '.$request->notes;
 
 
-        $startDateTime = new \DateTime($date_arr[0],new \DateTimeZone($this->time_zone));
+        $startDateTime = new \DateTime($date_arr[0], new \DateTimeZone($this->time_zone));
 
         $start = $startDateTime->format(\DateTime::ISO8601);
 
-        $endDateTime = new \DateTime($date_arr[1],new \DateTimeZone($this->time_zone));
+        $endDateTime = new \DateTime($date_arr[1], new \DateTimeZone($this->time_zone));
 
         $end = $endDateTime->format(\DateTime::ISO8601);
        
@@ -96,7 +100,7 @@ class AppointmentController extends Controller
                 'timeZone' => $this->time_zone,
               ),
               'reminders' => array(
-                'useDefault' => FALSE,
+                'useDefault' => false,
                 'overrides' => array(
                   array('method' => 'email', 'minutes' => 24 * 60),
                   array('method' => 'popup', 'minutes' => 10),
@@ -113,9 +117,10 @@ class AppointmentController extends Controller
             $appointment->title = $request->appointment_title;
             $appointment->panctuality = $request->timeframe;
             $appointment->notes = $request->notes;
-            $appointment->event_date = date('Y-m-d',strtotime($date_arr[0]));
-            if($service)
+            $appointment->event_date = date('Y-m-d', strtotime($date_arr[0]));
+        if ($service) {
             $appointment->customer_service_item_id = $service->id;
+        }
             $appointment->event_id_google = $post->id;
             $appointment->save();
 
@@ -130,36 +135,38 @@ class AppointmentController extends Controller
     {
      //dd($request->all());
 
-      $event_id = $request->google_event_id;
+        $event_id = $request->google_event_id;
 
-      $panctuality[0] = 'As scheduled' ;
-      $panctuality[1] = '1 Hour Window' ;
-      $panctuality[2] = '2 Hour Window' ;
-      $panctuality[3] = '3 Hour Window' ;
-      $panctuality[4] = 'Same Day' ;
-      $panctuality[5] = 'Tentative' ;
+        $panctuality[0] = 'As scheduled' ;
+        $panctuality[1] = '1 Hour Window' ;
+        $panctuality[2] = '2 Hour Window' ;
+        $panctuality[3] = '3 Hour Window' ;
+        $panctuality[4] = 'Same Day' ;
+        $panctuality[5] = 'Tentative' ;
 
         
-      $location = CustomerLocation::find($request->location_index);
-      $technician = User::find($request->employee_index);
-      $contact = CustomerLocationContact::find($request->contact_index);
-      $service = CustomerServiceItem::find($request->appointment_against) ;
+        $location = CustomerLocation::find($request->location_index);
+        $technician = User::find($request->employee_index);
+        $contact = CustomerLocationContact::find($request->contact_index);
+        $service = CustomerServiceItem::find($request->appointment_against) ;
 
-      $timeframe = ' &#177; '.$request->timeframe;
-      if($request->timeframe==4)
-        $timeframe = 'SDY';
+        $timeframe = ' &#177; '.$request->timeframe;
+        if ($request->timeframe==4) {
+            $timeframe = 'SDY';
+        }
 
-      if($request->timeframe==5)
-        $timeframe = 'TTV';
+        if ($request->timeframe==5) {
+            $timeframe = 'TTV';
+        }
 
-        $date_arr = explode(',',$request->calander_data);
+        $date_arr = explode(',', $request->calander_data);
        
 
-        $startDateTime = new \DateTime($date_arr[0],new \DateTimeZone($this->time_zone));
+        $startDateTime = new \DateTime($date_arr[0], new \DateTimeZone($this->time_zone));
 
         $start = $startDateTime->format(\DateTime::ISO8601);
 
-        $endDateTime = new \DateTime($date_arr[1],new \DateTimeZone($this->time_zone));
+        $endDateTime = new \DateTime($date_arr[1], new \DateTimeZone($this->time_zone));
 
         $end = $endDateTime->format(\DateTime::ISO8601);
 
@@ -170,15 +177,16 @@ class AppointmentController extends Controller
         $description .= ' Technician : '.$technician->f_name.' '.$technician->l_name;
         $description .= ' Contact : '.$contact->f_name.' '.$contact->l_name;
         $description .= ' Punctuality : '.$panctuality[$request->timeframe];
-        if($service)
-        $description .= ' Against : '.$service->title;
-        $description .= ' Start time : '.date("H:i:s",strtotime($date_arr[0]));
-        $description .= ' End time : '.date("H:i:s",strtotime($date_arr[1]));
+        if ($service) {
+            $description .= ' Against : '.$service->title;
+        }
+        $description .= ' Start time : '.date("H:i:s", strtotime($date_arr[0]));
+        $description .= ' End time : '.date("H:i:s", strtotime($date_arr[1]));
 
         $description .= ' Notes : '.$request->notes;
 
 
-        $post = $calendar->eventUpdate($event_id,array(
+        $post = $calendar->eventUpdate($event_id, array(
               'summary' =>  html_entity_decode('@'.$technician->f_name.' '.$timeframe.' '.$request->appointment_title),
               'location' => $location->address.' '.$location->city.' '.$location->state.' '.$location->zip,
               'visibility' => 'private',
@@ -193,7 +201,7 @@ class AppointmentController extends Controller
               ),
              
               'reminders' => array(
-                'useDefault' => FALSE,
+                'useDefault' => false,
                 'overrides' => array(
                   array('method' => 'email', 'minutes' => 24 * 60),
                   array('method' => 'popup', 'minutes' => 10),
@@ -201,7 +209,7 @@ class AppointmentController extends Controller
               ),
             ));
              
-            $appointment              =  CustomerAppointment::where('event_id_google',$event_id)->first();
+            $appointment              =  CustomerAppointment::where('event_id_google', $event_id)->first();
            
             $appointment->created_by  = Auth::user()->id;
             $appointment->customer_location_id = $location->id;
@@ -210,9 +218,10 @@ class AppointmentController extends Controller
             $appointment->title = $request->appointment_title;
             $appointment->panctuality = $request->timeframe;
             $appointment->notes = $request->notes;
-            $appointment->event_date = date('Y-m-d',strtotime($date_arr[0]));
-            if($service)
+            $appointment->event_date = date('Y-m-d', strtotime($date_arr[0]));
+        if ($service) {
             $appointment->customer_service_item_id = $service->id;
+        }
             $appointment->event_id_google = $post->id;
             $appointment->save();
 
@@ -224,48 +233,44 @@ class AppointmentController extends Controller
 
     function getAppointmentById($id)
     {
-        $appointment = CustomerAppointment::where('event_id_google',$id)->first();
+        $appointment = CustomerAppointment::where('event_id_google', $id)->first();
 
         return json_encode($appointment);
         exit;
-
     }
 
     function getEventById($id)
     {
-      $calendar   = new GoogleCalendar;
+        $calendar   = new GoogleCalendar;
 
-      $event = $calendar->event($id);
+        $event = $calendar->event($id);
 
-      $arr[] = ['title'=>html_entity_decode ($event->getSummary()),
+        $arr[] = ['title'=>html_entity_decode($event->getSummary()),
                              'start'=>$event->start->getDatetime(),
                              'end'=>$event->end->getDatetime()];
-      return json_encode($arr);
-      exit;
-
+        return json_encode($arr);
+        exit;
     }
 
 
-     function editEvent($id,$cust_id)
+    function editEvent($id, $cust_id)
     {
-        return View('admin.appointment_edit',compact('id','cust_id'));
-
+        return View('admin.appointment_edit', compact('id', 'cust_id'));
     }
 
     function deleteEvent(Request $request)
     {
-      $eve_id = $request->event_id;
+        $eve_id = $request->event_id;
      // $app_id = $request->app_id;
 
-      $calendar   = new GoogleCalendar;
+        $calendar   = new GoogleCalendar;
 
-      $event = $calendar->eventDelete($eve_id);
-      CustomerAppointment::where('event_id_google',$eve_id)->delete();
+        $event = $calendar->eventDelete($eve_id);
+        CustomerAppointment::where('event_id_google', $eve_id)->delete();
 
-      $arr['success']='yes';
+        $arr['success']='yes';
 
-      return json_encode($arr);
-      exit;
-
+        return json_encode($arr);
+        exit;
     }
 }

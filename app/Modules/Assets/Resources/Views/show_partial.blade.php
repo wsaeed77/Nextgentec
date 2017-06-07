@@ -28,7 +28,9 @@
           <span style="padding-left: 15px;">User Name</span><br>
           <span style="padding-left: 15px;">Password</span>
         </td>
-        <td><br><?php if($asset->password):?>{{$asset->password->login}}<br>{{$asset->password->password}}<?php endif;?>
+        <td><br><?php if ($asset->password) :
+?>{{$asset->password->login}}<br>{{$asset->password->password}}<?php
+                endif;?>
         </td>
       </tr>
       <tr>
@@ -177,7 +179,7 @@
         </td>
         <td>
           <br>{{$asset->host_name}}<br>{{$asset->ip_address}}<br>
-          <?php $roles = json_decode($asset->roles);?>
+            <?php $roles = json_decode($asset->roles);?>
           @if(isset($roles))
           @foreach ($roles as $role)
             @if(isset($asset_roles[$role]))

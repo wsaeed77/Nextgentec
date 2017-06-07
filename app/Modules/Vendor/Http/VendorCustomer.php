@@ -6,14 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class VendorCustomer extends Model
 {
-	protected $table = 'customer_vendor';
-	
-
-
- 
-
-   
-
-   
-
+    protected $table = 'customer_vendor';
 }

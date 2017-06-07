@@ -186,20 +186,25 @@
                                                                  data-toggle="modal"><i class="fa fa-pencil"></i></a>
                     </dd>
 
-                     <?php 
+                        <?php
                             $btn_class =  '';
-                            if($ticket->priority == 'low')
-                              $btn_class = 'bg-gray';
-                            if($ticket->priority == 'normal')
-                              $btn_class = 'bg-blue';
-                            if($ticket->priority == 'high')
-                              $btn_class = 'bg-green';
-                            if($ticket->priority == 'urgent')
-                              $btn_class = 'bg-yellow';
-                            if($ticket->priority == 'critical')
-                              $btn_class = 'bg-red';
+                        if ($ticket->priority == 'low') {
+                            $btn_class = 'bg-gray';
+                        }
+                        if ($ticket->priority == 'normal') {
+                            $btn_class = 'bg-blue';
+                        }
+                        if ($ticket->priority == 'high') {
+                            $btn_class = 'bg-green';
+                        }
+                        if ($ticket->priority == 'urgent') {
+                            $btn_class = 'bg-yellow';
+                        }
+                        if ($ticket->priority == 'critical') {
+                            $btn_class = 'bg-red';
+                        }
 
-                      ?>
+                        ?>
                      <dt>Priority</dt>
                     <dd id="priority">
                       <button type="button" class="btn {{$btn_class}}  btn-sm">

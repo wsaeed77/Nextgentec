@@ -56,7 +56,7 @@
 <button class="btn btn-info" type="button" onclick="send_mail()">Email Test</button>
    <?php //echo '<pre>';
    //dd($ticket);
-   ?>
+    ?>
     
     <div class="clearfix"></div>
   </div>
@@ -598,13 +598,13 @@ var statusData = [];
 var item;
 
 <?php foreach ($statuses as $status) {
-  ?>
+    ?>
 
 item = {id:"<?php echo $status->id; ?>",text : "<?php echo $status->text; ?>"};
 
 statusData.push(item);
 
-  <?php 
+    <?php
 } ?>
 
        $('#ticket_status').editable({

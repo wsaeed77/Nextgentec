@@ -7,10 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class CustomerLocation extends Model
 {
   
-	public function customer()
+    public function customer()
     {
-    	return $this->belongsTo('App\Modules\Crm\Http\Customer');
-        
+        return $this->belongsTo('App\Modules\Crm\Http\Customer');
     }
 
     public function contacts()
@@ -18,16 +17,14 @@ class CustomerLocation extends Model
         return $this->hasMany('App\Modules\Crm\Http\CustomerLocationContact');
     }
 
- public function networks()
+    public function networks()
     {
         return $this->hasMany('App\Modules\Assets\Http\Network');
-    }  
-
-
-  public function vend_cust_loc()
-    {
-        return $this->hasMany('App\Modules\Vendor\Http\VendorCustomer','location_id');
     }
 
- 
+
+    public function vend_cust_loc()
+    {
+        return $this->hasMany('App\Modules\Vendor\Http\VendorCustomer', 'location_id');
+    }
 }

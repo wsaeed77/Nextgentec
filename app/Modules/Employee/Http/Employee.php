@@ -9,12 +9,8 @@ class Employee extends Model
     //protected $table = 'employees';
 
 
-     public function user()
+    public function user()
     {
         return $this->belongsTo('App\Model\User');
     }
-
-    
-    
-    
 }

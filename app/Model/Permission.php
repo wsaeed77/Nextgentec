@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Model;
 
@@ -8,7 +8,7 @@ class Permission extends EntrustPermission
 {
     //name "admin", "owner", "employee".
     //display_name "User Administrator", "Project Owner", "Widget Co. Employee".
-    //discription 
+    //discription
 
     protected $fillable =   ['name','display_name','description'];
 }

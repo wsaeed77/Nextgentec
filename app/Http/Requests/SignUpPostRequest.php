@@ -24,8 +24,7 @@ class SignUpPostRequest extends Request
     public function rules()
     {
         //dd($this->request->isMethod('put'));
-        if(Request::isMethod('put'))
-        {
+        if (Request::isMethod('put')) {
             /*if(!empty(Request::input('password')))
             {
                 'password' => 'required|confirmed|min:6',
@@ -37,20 +36,16 @@ class SignUpPostRequest extends Request
             'email' => 'required|email|max:255',
            // 'password' => 'required|confirmed|min:6',
             
-        ];
-
+            ];
         }
-        if(Request::isMethod('post'))
-        {
+        if (Request::isMethod('post')) {
             return [
             'f_name' => 'required|max:15',
             'l_name' => 'required|max:15',
             'email' => 'required|email|max:255',
             'password' => 'required|confirmed|min:6',
             //
-        ];
-
+            ];
         }
-        
     }
 }

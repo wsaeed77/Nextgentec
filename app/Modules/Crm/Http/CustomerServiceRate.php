@@ -8,10 +8,8 @@ class CustomerServiceRate extends Model
 {
   
 
-	public function service_item()
+    public function service_item()
     {
-    	return $this->belongsTo('App\Modules\Crm\Http\CustomerServiceItem');
-        
+        return $this->belongsTo('App\Modules\Crm\Http\CustomerServiceItem');
     }
- 
 }

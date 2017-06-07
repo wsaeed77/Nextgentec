@@ -8,11 +8,8 @@ class Response extends Model
 {
    
    
-public function responder()
+    public function responder()
     {
-        return $this->belongsTo('App\Model\User','responder_id');
+        return $this->belongsTo('App\Model\User', 'responder_id');
     }
-
-   
-    
 }
