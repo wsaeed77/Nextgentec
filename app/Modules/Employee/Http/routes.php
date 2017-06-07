@@ -11,18 +11,11 @@
 |
 */
 
+Route::group(['middleware' => 'web'], function () {
 
-//Route::group(['prefix' => 'admin','middleware' => ['emp_admin','role:admin']], function() {
-Route::group(['prefix' => 'admin','middleware' => 'admin'], function () {
-    /*Route::get('/', function() {
-		 dd(
-            'This is the Blog module index page.',
-            session()->all()
-        );
-		//dd('This is the Employee module index page.');
-		 return view('employee::admin.welcome');
-	});*/
-    Route::group(['prefix' => 'employee','middleware' => ['role:admin|manager|technician']], function () {
+    Route::group(['prefix' => 'admin','middleware' => 'admin'], function () {
+
+       Route::group(['prefix' => 'employee','middleware' => ['role:admin|manager|technician']], function () {
 
         Route::get('/', ['as'=>'admin.employee.index','middleware' => ['permission:list_employee'], 'uses' => 'EmployeeController@index']);
         Route::get('create', ['as'=>'admin.employee.create','middleware' => ['permission:add_employee'], 'uses' => 'EmployeeController@create']);
@@ -37,7 +30,7 @@ Route::group(['prefix' => 'admin','middleware' => 'admin'], function () {
 
         Route::get('show/{id}', ['as'=>'admin.employee.show','middleware' => ['permission:edit_employee'], 'uses' => 'EmployeeController@show']);
 
-    /*********************************************** Leaves*****************************/
+        /*********************************************** Leaves*****************************/
 
         Route::group(['prefix' => 'leave'], function () {
             Route::get('/create', ['as'=>'employee.leave.create','middleware' => ['permission:post_leave'], 'uses' => 'LeaveController@create']);
@@ -67,7 +60,7 @@ Route::group(['prefix' => 'admin','middleware' => 'admin'], function () {
         });
     });
 
-    Route::group(['prefix' => 'leave'], function () {
+       Route::group(['prefix' => 'leave'], function () {
 
         Route::get('/list_leaves/{id}', ['as'=>'admin.leave.list_leaves','middleware' => ['permission:list_leaves'], 'uses' => 'LeaveController@dashboardListLeaves']);
 
@@ -76,8 +69,9 @@ Route::group(['prefix' => 'admin','middleware' => 'admin'], function () {
 
         Route::get('/list_own_leaves/{id}', ['as'=>'admin.leave.list_own_leaves','middleware' => ['permission:list_own_leaves'], 'uses' => 'LeaveController@allListLeaves']);
     });
-    //Route::resource('/employee','EmployeeController');
-    Route::resource('/raise', 'RaiseController');
+       Route::resource('/raise', 'RaiseController');
 
-    Route::get('calander', 'EmployeeController@googleCalander');
+       Route::get('calander', 'EmployeeController@googleCalander');
+   });
+
 });
