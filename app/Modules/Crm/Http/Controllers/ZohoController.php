@@ -97,18 +97,18 @@ class ZohoController extends Controller
                 $result = json_decode($result_curl);
 
 
-        if ($result->code==0) {
-            $customer_to_update = Customer::find($id);
-            $customer_to_update->zohoid =  $result->contact->contact_id;
-            $customer_to_update->save();
-            // $customer_to_update->zohoid =
+                if ($result->code==0) {
+                    $customer_to_update = Customer::find($id);
+                    $customer_to_update->zohoid =  $result->contact->contact_id;
+                    $customer_to_update->save();
+                    // $customer_to_update->zohoid =
 
-            $arr['success'] = 'Exported customer to Zoho invoice successfully.';
-        } else {
-            $arr['error'] = 'Error occured.' ;
-            $arr['error_msg'] = $result->message;
-        }
-        return json_encode($arr);
+                    $arr['success'] = 'Exported customer to Zoho invoice successfully.';
+                } else {
+                    $arr['error'] = 'Error occured.' ;
+                    $arr['error_msg'] = $result->message;
+                }
+                return json_encode($arr);
     }
 
 
