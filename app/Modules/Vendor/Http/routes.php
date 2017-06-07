@@ -83,6 +83,5 @@ Route::group(['middleware' => 'web'], function () {
 
             Route::get('custs_not_attached_to_vendor/{id}', ['as'=>'admin.vendor.custs_not_attached_to_vendor','middleware' => ['permission:list_vendor'], 'uses' => 'VendorController@custsNotAttachedToVendor']);
         });
-});
-
+    });
 });

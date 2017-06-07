@@ -61,7 +61,7 @@ class ImapGmail
 
                                      if ($structure->parts[$i]->encoding == 3) {
                                           $attachment_obj = base64_decode($attachment_binary);
-                                     }
+                                        }
 
                                      //$fh = fopen(public_path("attachments/$object->value"), "w+");
                                         $fh = fopen(public_path("attachments/$object->value"), "w+");
@@ -239,7 +239,7 @@ class ImapGmail
 
                                      if ($structure->parts[$i]->encoding == 3) {
                                           $attachment_obj = base64_decode($attachment_binary);
-                                     }
+                                        }
 
                                      //$fh = fopen(public_path("attachments/$object->value"), "w+");
                                         $fh = fopen(public_path("attachments/$object->value"), "w+");

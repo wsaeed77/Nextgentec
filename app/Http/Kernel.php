@@ -46,5 +46,4 @@ class Kernel extends HttpKernel
         'module' => \Caffeinated\Modules\Middleware\IdentifyModule::class,
         'emp_admin' => \App\Modules\Employee\Http\Middleware\AdminMiddleWare::class,
     ];
-
 }
