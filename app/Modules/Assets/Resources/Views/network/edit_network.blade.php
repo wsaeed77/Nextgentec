@@ -18,10 +18,10 @@
                    $selected_cust = session('cust_id');?>
                   {!! Form::select('customer', $customers,$selected_cust,['class'=>'form-control multiselect','placeholder' => 'Pick a Customer','disabled'=>'','id'=>'edit_network_customer'])!!}
 
-               <?php } else { ?>
+                <?php } else { ?>
                       {!! Form::select('customer', $customers,'',['class'=>'form-control multiselect','placeholder' => 'Pick a Customer','id'=>'edit_network_customer'])!!}
 
-                <?php } ?>
+               <?php } ?>
             </div>
 
             <div class="form-group">
