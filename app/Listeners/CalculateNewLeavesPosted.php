@@ -6,6 +6,7 @@ use App\Events\countNewLeaves;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use App\Modules\Employee\Http\Leave;
+
 class CalculateNewLeavesPosted
 {
     /**
@@ -26,7 +27,7 @@ class CalculateNewLeavesPosted
      */
     public function handle(countNewLeaves $event)
     {
-        $leaves_count = Leave::where('status','pending')->where('google_post',0)->count();
+        $leaves_count = Leave::where('status', 'pending')->where('google_post', 0)->count();
         return $leaves_count;
     }
 }

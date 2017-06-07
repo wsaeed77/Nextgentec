@@ -41,14 +41,12 @@
                                     <td>{{ $employee->f_name }} {{ $employee->l_name }}</td>
                                     <td>{{ $employee->email }}</td>
                                     <td>{{ date('d/m/Y',strtotime($employee->created_at)) }}</td>
-                                    <td><?php if($employee->roles)
-                                                {
-                                                    foreach( $employee->roles as $role )
-                                                    {
-                                                    echo $role->display_name;
-                                                    //dd($role->display_name);
-                                                    }
-                                                }?>
+                                    <td><?php if ($employee->roles) {
+                                        foreach ($employee->roles as $role) {
+                                            echo $role->display_name;
+                                        //dd($role->display_name);
+                                        }
+                                        }?>
                                     </td>
                                     <td>
                                      <a href="{{ URL::route('admin.employee.show',$employee->id)}}" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i> Show</a>

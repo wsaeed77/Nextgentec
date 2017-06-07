@@ -18,7 +18,7 @@ class EventServiceProvider extends ServiceProvider
         ],
         'App\Events\updateGoogleAuthToken' => [
         'App\Listeners\refreshGoogleAuthToken',
-    ],
+        ],
     ];
 
     /**

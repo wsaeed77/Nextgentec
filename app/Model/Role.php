@@ -3,13 +3,11 @@
 use Zizaco\Entrust\EntrustRole;
 use Illuminate\Database\Eloquent\Model;
 
-class Role extends EntrustRole {
+class Role extends EntrustRole
+{
     //name "admin", "owner", "employee".
     //display_name "User Administrator", "Project Owner", "Widget Co. Employee".
-    //discription 
+    //discription
     
     protected $fillable =   ['name','display_name','description'];
-
-   
-    
 }

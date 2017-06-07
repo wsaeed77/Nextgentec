@@ -16,7 +16,7 @@
       </div>
       <div class="modal-footer">
       <?php //$route  = 'admin.'.$controller.'.destroy';?>
-       <?php /* {!! Form::open(array('route' => array($route), 'method' => 'delete')) !!} */?>
+        <?php /* {!! Form::open(array('route' => array($route), 'method' => 'delete')) !!} */?>
           <!-- <input type="hidden" name="_token" value="{{ csrf_token() }}"> -->
          
          <input type="hidden" name="del_id_sitem" value="">
@@ -29,7 +29,7 @@
             <i class="fa fa-times-circle"></i> Yes
           </button>
           
-          <?php /*{!! Form::close() !!}*/?>
+            <?php /*{!! Form::close() !!}*/?>
       </div>
     </div>
   </div>

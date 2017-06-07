@@ -24,8 +24,7 @@ class LeavePostRequest extends Request
     public function rules()
     {
         //dd($this->request->isMethod('put'));
-        if(Request::isMethod('put'))
-        {
+        if (Request::isMethod('put')) {
             /*if(!empty(Request::input('password')))
             {
                 'password' => 'required|confirmed|min:6',
@@ -37,11 +36,9 @@ class LeavePostRequest extends Request
             'type' => 'required',
            // 'password' => 'required|confirmed|min:6',
             
-        ];
-
+            ];
         }
-        if(Request::isMethod('post'))
-        {
+        if (Request::isMethod('post')) {
             return [
             'start_date' => 'required',
             'title' => 'required|max:15',
@@ -49,10 +46,8 @@ class LeavePostRequest extends Request
             'type' => 'required',
            // 'password' => 'required|confirmed|min:6',
             
-        ];
-
+            ];
         }
-        
     }
 
     public function messages()

@@ -7,11 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class KnowledgeProcedure extends Model
 {
 
-   function customer()
-   {
+    function customer()
+    {
 
-   	return $this->belongsTo('App\Modules\Crm\Http\Customer');
-   }
-
-
+        return $this->belongsTo('App\Modules\Crm\Http\Customer');
+    }
 }

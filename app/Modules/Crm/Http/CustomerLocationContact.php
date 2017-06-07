@@ -8,13 +8,8 @@ class CustomerLocationContact extends Model
 {
   
 
-	public function location()
+    public function location()
     {
-    	return $this->belongsTo('App\Modules\Crm\Http\CustomerLocation');
-        
+        return $this->belongsTo('App\Modules\Crm\Http\CustomerLocation');
     }
-
-  
-
- 
 }

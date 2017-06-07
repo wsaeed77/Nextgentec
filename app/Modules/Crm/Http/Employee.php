@@ -13,8 +13,4 @@ class Employee extends Model
     {
         return $this->hasMany('App\Modules\Crm\Http\Ticket','created_by');
     }*/
-
-
- 
-    
 }

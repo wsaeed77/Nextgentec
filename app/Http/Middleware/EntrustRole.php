@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Http\Middleware;
 
@@ -39,7 +39,7 @@ class EntrustRole
         
         if ($this->auth->guest() || !$request->user()->hasRole(explode('|', $roles))) {
             //return response('Forbidden: You are not authorized to access this resource.', 403);
-        return view('admin.no-access');
+            return view('admin.no-access');
         }
 
 

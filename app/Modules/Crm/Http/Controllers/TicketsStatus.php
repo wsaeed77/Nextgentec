@@ -6,23 +6,22 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 
-use  App\Modules\Crm\Http\TicketStatus;
-use  App\Modules\Crm\Http\Ticket;
+use App\Modules\Crm\Http\TicketStatus;
+use App\Modules\Crm\Http\Ticket;
 
 class TicketsStatus extends Controller
 {
 
-	public function index()
-	{
+    public function index()
+    {
         $statuses = TicketStatus::all();
         //dd($statuses);
-          if(\Request::ajax())
-        {
-        return view('crm::ticketstatus.ajax_index',compact('statuses'))->render();
+        if (\Request::ajax()) {
+            return view('crm::ticketstatus.ajax_index', compact('statuses'))->render();
         }
-		return view('crm::settings.ticketstatus.index',compact('statuses'));
-	}
-	/**
+        return view('crm::settings.ticketstatus.index', compact('statuses'));
+    }
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -42,20 +41,22 @@ class TicketsStatus extends Controller
     public function store(Request $request)
     {
 
-        $this->validate($request,
+        $this->validate(
+            $request,
             [
 
                 'title'=>'required',
 
 
 
-            ]);
-       $status = new TicketStatus;
-       $status->title = $request->title;
-       $status->color_code = $request->color_code;
-       $status->save();
+            ]
+        );
+        $status = new TicketStatus;
+        $status->title = $request->title;
+        $status->color_code = $request->color_code;
+        $status->save();
 
-       $arr['success'] = 'Status added successfully';
+        $arr['success'] = 'Status added successfully';
         return json_encode($arr);
             exit;
     }
@@ -100,19 +101,20 @@ class TicketsStatus extends Controller
         $id = $request->status_id;
         //dd($request->all());
         $status = TicketStatus::find($id);
-        $this->validate($request,
+        $this->validate(
+            $request,
             [
 
                 'title'=>'required',
-            ]);
+            ]
+        );
 
-       $status->title = $request->title;
-       $status->color_code = $request->color_code;
-       $status->save();
-       $arr['success'] = 'Status updated successfully';
+        $status->title = $request->title;
+        $status->color_code = $request->color_code;
+        $status->save();
+        $arr['success'] = 'Status updated successfully';
         return json_encode($arr);
             exit;
-
     }
 
     /**
@@ -137,7 +139,5 @@ class TicketsStatus extends Controller
         $arr['success'] = 'Status deleted successfully';
         return json_encode($arr);
             exit;
-
     }
-
 }

@@ -6,27 +6,23 @@ use Illuminate\Database\Eloquent\Model;
 
 class Leave extends Model
 {
-     public function poster()
+    public function poster()
     {
-    	return $this->belongsTo('App\Model\User','posted_by');
-        
+        return $this->belongsTo('App\Model\User', 'posted_by');
     }
 
-     public function applicant()
+    public function applicant()
     {
-    	return $this->belongsTo('App\Model\User','posted_for');
-        
+        return $this->belongsTo('App\Model\User', 'posted_for');
     }
 
-     public function action_taker()
+    public function action_taker()
     {
-    	return $this->belongsTo('App\Model\User','action_taken_by');
-        
+        return $this->belongsTo('App\Model\User', 'action_taken_by');
     }
 
-     public function user()
+    public function user()
     {
-        return $this->belongsTo('App\Model\User','posted_for');
-        
+        return $this->belongsTo('App\Model\User', 'posted_for');
     }
 }

@@ -52,13 +52,13 @@ class EntrustAbility
                 $id = $request->route()->getParameter($paramNames[0]);
             }
 
-            // check user 
+            // check user
             if (!is_null($id) && $id == $request->user()->id) {
                 return $next($request);
             }
         }
 
-        if ($this->auth->guest() || !$request->user()->ability($roles, $permissions, array('validate_all' => $validateAll))) {
+        if ($this->auth->guest() || !$request->user()->ability($roles, $permissions, ['validate_all' => $validateAll])) {
             return response('Forbidden: You are not authorized to access this resource.', 403);
         }
 

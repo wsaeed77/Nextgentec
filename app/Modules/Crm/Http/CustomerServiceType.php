@@ -8,16 +8,15 @@ class CustomerServiceType extends Model
 {
   
 
-public function service_items()
+    public function service_items()
     {
-        return $this->hasOne('App\Modules\Crm\Http\CustomerServiceItem','service_type_id');
+        return $this->hasOne('App\Modules\Crm\Http\CustomerServiceItem', 'service_type_id');
     }
 
-     public function delete()
+    public function delete()
     {
         $this->service_items()->delete();
        
         return parent::delete();
     }
- 
 }

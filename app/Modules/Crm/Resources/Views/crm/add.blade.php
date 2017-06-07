@@ -239,7 +239,7 @@
                                         <div class="form-group col-lg-6">
                                             <label>Location</label>
 
-                                              <?php $location_index = [];?>
+                                                <?php $location_index = [];?>
                                              {!! Form::select('location_index', $location_index,'',['class'=>'form-control multiselect_crm','id'=>'cnt_location'])!!}
                                             
                                         </div>

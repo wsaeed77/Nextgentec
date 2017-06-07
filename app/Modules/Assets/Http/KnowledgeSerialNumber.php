@@ -7,15 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 class KnowledgeSerialNumber extends Model
 {
 
-   function customer()
-   {
+    function customer()
+    {
 
-   	return $this->belongsTo('App\Modules\Crm\Http\Customer');
-   }
-   function location()
-   {
+        return $this->belongsTo('App\Modules\Crm\Http\Customer');
+    }
+    function location()
+    {
 
-   	return $this->belongsTo('App\Modules\Crm\Http\CustomerLocation','location_id');
-   }
-
+        return $this->belongsTo('App\Modules\Crm\Http\CustomerLocation', 'location_id');
+    }
 }

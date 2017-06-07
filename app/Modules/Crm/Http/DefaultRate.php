@@ -8,6 +8,6 @@ class DefaultRate extends Model
 {
   
 
-	
+    
  
 }

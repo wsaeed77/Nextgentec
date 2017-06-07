@@ -3,6 +3,7 @@
 /storage
 /public/customer_files
 Homestead.yaml
+/public/storage
 Homestead.json
 .env
 nexgentech.sublime-project

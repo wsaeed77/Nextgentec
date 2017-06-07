@@ -1,10 +1,9 @@
 <?php namespace App\Services;
 
+class TimeZone
+{
 
-
-class TimeZone {
-
-   public function timezone_list()
+    public function timezone_list()
     {
         static $timezones = null;
 

@@ -7,12 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Tag extends Model
 {
     //
-protected $fillable = ['title'];
+    protected $fillable = ['title'];
 
-   function password()
-   {
+    function password()
+    {
 
-   	return $this->belongsToMany('App\Modules\Assets\Http\KnowledgePassword')->withTimestamps();
-   }
-  
+        return $this->belongsToMany('App\Modules\Assets\Http\KnowledgePassword')->withTimestamps();
+    }
 }

@@ -6,6 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class ScriptBody extends Model
 {
-  protected $table = 'backupmanager_script_body';
-
+    protected $table = 'backupmanager_script_body';
 }

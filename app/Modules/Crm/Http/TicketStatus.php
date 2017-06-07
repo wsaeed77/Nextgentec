@@ -8,11 +8,8 @@ class TicketStatus extends Model
 {
    
    
-public function tickets()
+    public function tickets()
     {
         return $this->hasMany('App\Modules\Crm\Http\Ticket');
     }
-
-   
-    
 }

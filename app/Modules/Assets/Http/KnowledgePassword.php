@@ -7,30 +7,27 @@ use Illuminate\Database\Eloquent\Model;
 class KnowledgePassword extends Model
 {
 
-   function customer()
-   {
+    function customer()
+    {
 
-   	return $this->belongsTo('App\Modules\Crm\Http\Customer');
-   }
+        return $this->belongsTo('App\Modules\Crm\Http\Customer');
+    }
 
-   function tags()
-   {
+    function tags()
+    {
 
-   	return $this->belongsToMany('App\Modules\Assets\Http\Tag')->withTimestamps();
-   }
-
-
-   function asset()
-   {
-
-   	return $this->belongsTo('App\Modules\Assets\Http\Asset','asset_id');
-   }
-   function vendor()
-   {
-
-      return $this->belongsTo('App\Modules\Vendor\Http\Vendor','vendor_id');
-   }
+        return $this->belongsToMany('App\Modules\Assets\Http\Tag')->withTimestamps();
+    }
 
 
-   
+    function asset()
+    {
+
+        return $this->belongsTo('App\Modules\Assets\Http\Asset', 'asset_id');
+    }
+    function vendor()
+    {
+
+        return $this->belongsTo('App\Modules\Vendor\Http\Vendor', 'vendor_id');
+    }
 }

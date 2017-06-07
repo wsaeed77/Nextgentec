@@ -26,6 +26,6 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-      $schedule->command('gmail:read')->everyMinute();        
+        $schedule->command('gmail:read')->everyMinute();
     }
 }

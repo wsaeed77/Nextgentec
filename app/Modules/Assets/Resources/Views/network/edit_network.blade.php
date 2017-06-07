@@ -14,20 +14,19 @@
             <div class="form-group">
               <label>Customer</label>
                 <input type="hidden" name="id">
-               <?php if((session('cust_id')!='') && (session('customer_name')!=''))
-               {
-                  $selected_cust = session('cust_id');?>
+               <?php if ((session('cust_id')!='') && (session('customer_name')!='')) {
+                   $selected_cust = session('cust_id');?>
                   {!! Form::select('customer', $customers,$selected_cust,['class'=>'form-control multiselect','placeholder' => 'Pick a Customer','disabled'=>'','id'=>'edit_network_customer'])!!}
 
-                      <?php } else{ ?>
+                <?php } else { ?>
                       {!! Form::select('customer', $customers,'',['class'=>'form-control multiselect','placeholder' => 'Pick a Customer','id'=>'edit_network_customer'])!!}
 
-                       <?php } ?>
+                    <?php } ?>
             </div>
 
             <div class="form-group">
               <label>Location</label>
-              <?php $location_index = [];?>
+                <?php $location_index = [];?>
               {!! Form::select('location_index', $location_index,'',['class'=>'form-control multiselect','id'=>'edit_ntw_location'])!!}
             </div>
 
@@ -182,7 +181,7 @@
 <div class="clearfix"></div>
       </div>
       <div class="modal-footer">
-      <?php //$route  = $route;?>
+        <?php //$route  = $route;?>
 
           <!-- <input type="hidden" name="_token" value="{{ csrf_token() }}"> -->
 

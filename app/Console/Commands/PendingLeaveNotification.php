@@ -45,25 +45,29 @@ class PendingLeaveNotification extends Command
      */
     public function handle()
     {
-       $leaves = Leave::where('status','pending')->with(['user', 'user.roles'])->get();
+        $leaves = Leave::where('status', 'pending')->with(['user', 'user.roles'])->get();
          //dd($leaves[0]->user->roles);
        //$gmail_address='w.saeed77@gmail.com';
 
-       $smtp_arr = Config::where('title','smtp')->get();
-       $email_body='wasdasdasdasdasd';
-       $smtp =[];
-       foreach ($smtp_arr as $value) {
-        if($value->key=='server_address')
-            $server_address = $value->value;
-        if($value->key=='gmail_address')
-            $gmail_address = $value->value;
-        if($value->key=='gmail_password')
-            $password = $value->value;
-        if($value->key=='port')
-            $port= $value->value;
-    }
+        $smtp_arr = Config::where('title', 'smtp')->get();
+        $email_body='wasdasdasdasdasd';
+        $smtp =[];
+        foreach ($smtp_arr as $value) {
+            if ($value->key=='server_address') {
+                $server_address = $value->value;
+            }
+            if ($value->key=='gmail_address') {
+                $gmail_address = $value->value;
+            }
+            if ($value->key=='gmail_password') {
+                $password = $value->value;
+            }
+            if ($value->key=='port') {
+                $port= $value->value;
+            }
+        }
 
-    config(['mail.driver' => 'smtp',
+        config(['mail.driver' => 'smtp',
         'mail.host' => $server_address,
         'mail.port' => $port,
         'mail.encryption' => 'ssl',
@@ -73,7 +77,7 @@ class PendingLeaveNotification extends Command
 
 
 
-    Mail::send('crm::ticket.email.response', array('body'=>$email_body), function($message) use ($gmail_address){
+        Mail::send('crm::ticket.email.response', ['body'=>$email_body], function ($message) use ($gmail_address) {
 
                    /* $swiftMessage = $message->getSwiftMessage();
                     $headers = $swiftMessage->getHeaders();
@@ -87,14 +91,9 @@ class PendingLeaveNotification extends Command
                 
 
 
-              $message->from(trim($gmail_address),'waqas saeed');
-              $message->to('w.saeed77@gmail.com','waqas saeed');
+              $message->from(trim($gmail_address), 'waqas saeed');
+              $message->to('w.saeed77@gmail.com', 'waqas saeed');
               $message->subject('pending email notification');
-
-          });
-
-
-
-
-}
+        });
+    }
 }

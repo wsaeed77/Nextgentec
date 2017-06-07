@@ -21,31 +21,30 @@ class RoleController extends Controller
     public function index()
     {
         $controller = $this->controller;
-      $roles = Role::select(['id','name','display_name','description','created_at'])->get();
-      if(\Request::ajax())
+        $roles = Role::select(['id','name','display_name','description','created_at'])->get();
+        if (\Request::ajax()) {
+            return view('admin.roles.ajax_index', compact('roles', 'controller'))->render();
+        }
+            return view('admin.roles.index', compact('roles', 'controller'));
+    }
+
+    public function ajaxDataIndex()
     {
-       return view('admin.roles.ajax_index',compact('roles','controller'))->render();
-    }
-            return view('admin.roles.index',compact('roles','controller'));
-    }
+        $global_date = $this->global_date;
+        $roles = Role::select(['id','name','display_name','description','created_at']);
 
-     public function ajaxDataIndex()
-     {
-       $global_date = $this->global_date;
-       $roles = Role::select(['id','name','display_name','description','created_at']);
-
-       return Datatables::of($roles)
-       ->addColumn('action', function ($role) {
-         $return = '<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-id="'.$role->id.'" id="modaal" data-target="#modal-edit-role">
+        return Datatables::of($roles)
+        ->addColumn('action', function ($role) {
+            $return = '<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-id="'.$role->id.'" id="modaal" data-target="#modal-edit-role">
                           <i class="fa fa-pencil"></i>Edit</button><button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-id="'.$role->id.'" id="modaal" data-target="#modal-delete-role">
                           <i class="fa fa-times-circle"></i>Delete</button>';
-         return $return;
-       })
-       ->editColumn('created_at',function($permission) use ($global_date){
-         return date($global_date,strtotime($permission->created_at ));
-       })
-       ->make(true);
-     }
+            return $return;
+        })
+        ->editColumn('created_at', function ($permission) use ($global_date) {
+            return date($global_date, strtotime($permission->created_at));
+        })
+        ->make(true);
+    }
 
     public function create()
     {
@@ -69,7 +68,7 @@ class RoleController extends Controller
     {
         //dd($request->all());
 
-       $this->validate($request, [
+        $this->validate($request, [
                 'name' => 'required|unique:roles|max:50',
                 'display_name' => 'required',
                 'description' => 'required',
@@ -84,11 +83,12 @@ class RoleController extends Controller
         $role->save();
 
 
-         if($request->permissions)
-       $role->attachPermissions($request->permissions);
+        if ($request->permissions) {
+            $role->attachPermissions($request->permissions);
+        }
         //print_r($request->all()); die('asdas');
         //return redirect()->route('admin.role.index');
-   $arr['success'] = 'Role added successfully';
+        $arr['success'] = 'Role added successfully';
         return json_encode($arr);
             exit;
     }
@@ -112,9 +112,9 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
-        $role = Role::where('id',$id)->first();
+        $role = Role::where('id', $id)->first();
 
-        foreach ($role->perms as  $perm) {
+        foreach ($role->perms as $perm) {
             $selected_perms[]=$perm->id;
         }
 
@@ -157,8 +157,9 @@ class RoleController extends Controller
          //detach all users
          //$role->users()->sync([]);
 
-         if($request->permissions)
-        $role->attachPermissions($request->permissions);
+        if ($request->permissions) {
+            $role->attachPermissions($request->permissions);
+        }
 
        // return redirect()->route('admin.role.index');
 
@@ -190,5 +191,4 @@ class RoleController extends Controller
         return json_encode($arr);
             exit;
     }
-
 }

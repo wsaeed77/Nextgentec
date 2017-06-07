@@ -17,22 +17,26 @@ use Auth;
 class TestEmailController extends Controller
 {
 
-  function sendEmail()
-  {
+    function sendEmail()
+    {
 
-            $smtp_arr = Config::where('title','smtp')->get();
+            $smtp_arr = Config::where('title', 'smtp')->get();
 
             $smtp =[];
-            foreach ($smtp_arr as $value) {
-                if($value->key=='server_address')
-                    $server_address = $value->value;
-                if($value->key=='gmail_address')
-                    $gmail_address = $value->value;
-                if($value->key=='gmail_password')
-                    $password = $value->value;
-                if($value->key=='port')
-                    $port= $value->value;
+        foreach ($smtp_arr as $value) {
+            if ($value->key=='server_address') {
+                $server_address = $value->value;
             }
+            if ($value->key=='gmail_address') {
+                $gmail_address = $value->value;
+            }
+            if ($value->key=='gmail_password') {
+                $password = $value->value;
+            }
+            if ($value->key=='port') {
+                $port= $value->value;
+            }
+        }
 
              config(['mail.driver' => 'smtp',
                     'mail.host' => $server_address,
@@ -47,13 +51,13 @@ class TestEmailController extends Controller
                 //dd(config('mail'));
                 
               Mail::send('crm::ticket.email.response', ['body'=>'just test test email, by clicking test email button on show ticket page.'], function ($m) use ($gmail_address) {
-                    $m->from($gmail_address,'Nexgentec');
+                    $m->from($gmail_address, 'Nexgentec');
 
-                    $m->to('mmanning@nexgentec.com','Adnan Tahir')->subject('Your Reminder!');
-                });
+                    $m->to('mmanning@nexgentec.com', 'Adnan Tahir')->subject('Your Reminder!');
+              });
 
-        dd(Mail::failures());
-     /*   if( count(Mail::failures()) > 0 ) {
+          dd(Mail::failures());
+         /*   if( count(Mail::failures()) > 0 ) {
 
                        echo "There was one or more failures. They were: <br />";
 
@@ -64,8 +68,5 @@ class TestEmailController extends Controller
                     } else {
                         echo "No errors, all sent successfully!";
                     }*/
-
-  }
-   
-
+    }
 }

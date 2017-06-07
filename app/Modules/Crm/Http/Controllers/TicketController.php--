@@ -354,7 +354,7 @@ class TicketController extends Controller
     public function store(Request $request)
     {
     //customer contact is text field but with magic suggest it adds an array, throwing exception upon validation, so modifyig it, i.e assigning the aaray value to customer_contact
-      $request->merge(array('customer_contact' => $request->customer_contact[0]));
+      $request->merge(['customer_contact' => $request->customer_contact[0]]);
     //saving customer_contact value in session to display upon validation in blade.
     $request->session()->put('cust_cont', $request->customer_contact);
 
@@ -677,7 +677,7 @@ class TicketController extends Controller
 
 dd('ok');*/
 
-                 Mail::send('crm::ticket.email.response', array('firstname'=>$ticket->sender_name,'body'=>$response_body), function($message) use ($ticket,$gmail_address,$response,$bcc,$cc){
+                 Mail::send('crm::ticket.email.response', ['firstname'=>$ticket->sender_name,'body'=>$response_body], function($message) use ($ticket,$gmail_address,$response,$bcc,$cc){
 
                    /* $swiftMessage = $message->getSwiftMessage();
                     $headers = $swiftMessage->getHeaders();
@@ -714,7 +714,7 @@ dd('ok');*/
             {
                 //dd('here');
                     //mail($request->to_email,"My subject",'test msg');
-                 Mail::send('crm::ticket.email.response', array('body'=>$response_body), function($message) use ($ticket,$gmail_address,$response,$bcc,$cc,$request){
+                 Mail::send('crm::ticket.email.response', ['body'=>$response_body], function($message) use ($ticket,$gmail_address,$response,$bcc,$cc,$request){
                    // print_r($request);
                    /* $swiftMessage = $message->getSwiftMessage();
                     $headers = $swiftMessage->getHeaders();
@@ -1311,23 +1311,23 @@ dd('ok');*/
 
                   }
 
-                echo json_encode(array(
+                echo json_encode([
                 "status" => true,
                 "error"  => null,
-                "data"   => array(
+                "data"   => [
                     "tickets"   => $tickets
-                    )
-                )
+                    ]
+                ]
                 );
         }
         else
-           echo json_encode(array(
+           echo json_encode([
                 "status" => true,
                 "error"  => null,
-                "data"   => array(
+                "data"   => [
                     "tickets"   => []
-                    )
-                )
+                    ]
+                ]
                 ); 
 
         

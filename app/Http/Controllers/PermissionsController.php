@@ -24,11 +24,10 @@ class PermissionsController extends Controller
         $controller = $this->controller;
       //$permissions = Permission::select(['id','name','display_name','description','created_at'])->paginate(10);;
 
-         if(\Request::ajax())
-        {
-           return view('admin.permissions.ajax_index',compact('controller'))->render();
+        if (\Request::ajax()) {
+            return view('admin.permissions.ajax_index', compact('controller'))->render();
         }
-           return view('admin.permissions.index',compact('controller'));
+           return view('admin.permissions.index', compact('controller'));
     }
 
     public function ajaxDataIndex()
@@ -43,7 +42,7 @@ class PermissionsController extends Controller
 
             ->addColumn('action', function ($permission) {
 
-            $return = '<div class="btn-group"> <button type="button" class="btn  btn-xs"
+                $return = '<div class="btn-group"> <button type="button" class="btn  btn-xs"
                                   data-toggle="modal" data-id="'.$permission->id.'" id="modaal" data-target="#modal-edit-permission">
                                     <i class="fa fa-edit"></i>
                                 </button>
@@ -56,9 +55,9 @@ class PermissionsController extends Controller
                               
                             
                 return $return;
-            }) 
-            ->editColumn('created_at',function($permission) use ($global_date){
-                return date($global_date,strtotime($permission->created_at ));
+            })
+            ->editColumn('created_at', function ($permission) use ($global_date) {
+                return date($global_date, strtotime($permission->created_at));
             })
             ->make(true);
     }
@@ -69,7 +68,7 @@ class PermissionsController extends Controller
      */
     public function create()
     {
-       return view('admin.permissions.add');
+        return view('admin.permissions.add');
     }
 
     /**
@@ -120,7 +119,7 @@ class PermissionsController extends Controller
      */
     public function edit($id)
     {
-        $permission = Permission::where('id',$id)->where('id',$id)->first();
+        $permission = Permission::where('id', $id)->where('id', $id)->first();
       //dd($permission);
        //echo $user->name;
        //exit;
@@ -152,7 +151,7 @@ class PermissionsController extends Controller
         $permission->display_name = $request->display_name; // optional
         $permission->description  = $request->description; // optional
         $permission->save();
-        //return redirect()->route('admin.permissions.index');  
+        //return redirect()->route('admin.permissions.index');
 
          $arr['success'] = 'Permission updated successfully';
         return json_encode($arr);
@@ -177,7 +176,7 @@ class PermissionsController extends Controller
     }
 
 
-     public function ajaxDelete($id)
+    public function ajaxDelete($id)
     {
       //dd($id);
         //dd($request->id);
@@ -189,6 +188,6 @@ class PermissionsController extends Controller
         //return redirect()->intended('admin/permissions');
         $arr['success'] = 'Permission deleted successfully';
         return json_encode($arr);
-            exit;
+          exit;
     }
 }

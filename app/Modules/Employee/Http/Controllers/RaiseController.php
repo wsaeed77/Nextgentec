@@ -9,18 +9,19 @@ use App\Modules\Employee\Http\Requests\RaisePostRequest;
 use App\Model\Role;
 use App\Model\User;
 use App\Modules\Employee\Http\Raise;
+
 class RaiseController extends Controller
 {
-	private $controller = 'raise';
+    private $controller = 'raise';
     
 
-	 public function index()
+    public function index()
     {
        
         $controller = $this->controller;
-        $employees = User::where('type','employee')->get();
+        $employees = User::where('type', 'employee')->get();
 
-        return view('employee::admin.index',compact('employees','controller'));
+        return view('employee::admin.index', compact('employees', 'controller'));
     }
 
     /**
@@ -41,17 +42,17 @@ class RaiseController extends Controller
     public function store(RaisePostRequest $request)
     {
         $raise = new Raise;
-       	$raise->effective_date = date( "Y-m-d",strtotime($request->effective_date));
+        $raise->effective_date = date("Y-m-d", strtotime($request->effective_date));
         $raise->old_pay = $request->old_pay;
        
         $raise->new_pay = $request->new_pay;
         $raise->user_id = $request->user_id;
         $raise->notes = $request->notes;
         $raise->save();
-      	//return redirect()->intended('admin/employee'); 
+        //return redirect()->intended('admin/employee');
         $arr['success'] = 'Record added sussessfully';
         echo json_encode($arr);
-       exit;
+        exit;
     }
 
     /**
@@ -73,7 +74,6 @@ class RaiseController extends Controller
      */
     public function edit($id)
     {
-		
     }
 
     /**
@@ -107,42 +107,42 @@ class RaiseController extends Controller
         //return redirect()->intended('admin/employee');
         $arr['success'] = 'Record Deleted sussessfully';
         echo json_encode($arr);
-       exit;
+        exit;
     }
 
 
-    private function timezone_list() 
+    private function timezone_list()
     {
-	    static $timezones = null;
+        static $timezones = null;
 
-	    if ($timezones === null) {
-	        $timezones = [];
-	        $offsets = [];
-	        $now = new \DateTime();
-	        foreach (\DateTimeZone::listIdentifiers(\DateTimeZone::PER_COUNTRY, 'US') as $timezone) {
-	            $now->setTimezone(new \DateTimeZone($timezone));
-	            $offsets[] = $offset = $now->getOffset();
-	            $timezones[$timezone] = '(' . $this->format_GMT_offset($offset) . ') ' . $this->format_timezone_name($timezone);
-	        }
+        if ($timezones === null) {
+            $timezones = [];
+            $offsets = [];
+            $now = new \DateTime();
+            foreach (\DateTimeZone::listIdentifiers(\DateTimeZone::PER_COUNTRY, 'US') as $timezone) {
+                $now->setTimezone(new \DateTimeZone($timezone));
+                $offsets[] = $offset = $now->getOffset();
+                $timezones[$timezone] = '(' . $this->format_GMT_offset($offset) . ') ' . $this->format_timezone_name($timezone);
+            }
 
-	        array_multisort($offsets, $timezones);
-	    }
+            array_multisort($offsets, $timezones);
+        }
 
-	    return $timezones;
-	}
+        return $timezones;
+    }
 
-	private function format_GMT_offset($offset) 
-	{
-	    $hours = intval($offset / 3600);
-	    $minutes = abs(intval($offset % 3600 / 60));
-	    return 'GMT' . ($offset ? sprintf('%+03d:%02d', $hours, $minutes) : '');
-	}
+    private function format_GMT_offset($offset)
+    {
+        $hours = intval($offset / 3600);
+        $minutes = abs(intval($offset % 3600 / 60));
+        return 'GMT' . ($offset ? sprintf('%+03d:%02d', $hours, $minutes) : '');
+    }
 
-	private function format_timezone_name($name) 
-	{
-	    $name = str_replace('/', ', ', $name);
-	    $name = str_replace('_', ' ', $name);
-	    $name = str_replace('St ', 'St. ', $name);
-	    return $name;
-	}
+    private function format_timezone_name($name)
+    {
+        $name = str_replace('/', ', ', $name);
+        $name = str_replace('_', ' ', $name);
+        $name = str_replace('St ', 'St. ', $name);
+        return $name;
+    }
 }

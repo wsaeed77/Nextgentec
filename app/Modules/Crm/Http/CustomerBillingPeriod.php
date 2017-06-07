@@ -10,13 +10,11 @@ class CustomerBillingPeriod extends Model
 
     public function customer()
     {
-    	return $this->belongsTo('App\Modules\Crm\Http\Customer');
-        
+        return $this->belongsTo('App\Modules\Crm\Http\Customer');
     }
     
     public function service_item()
     {
-     return $this->hasOne('App\Modules\Crm\Http\CustomerServiceItem');
+        return $this->hasOne('App\Modules\Crm\Http\CustomerServiceItem');
     }
-
 }
