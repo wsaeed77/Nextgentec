@@ -1,0 +1,3 @@
+Options +SymLinksifOwnerMatch
+Options -Indexes
+RewriteBase /nexgentech/

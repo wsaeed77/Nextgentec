@@ -1,0 +1,141 @@
+﻿/* list */
+
+#ticketListResult { position: relative; }
+.ticketsList { border-collapse: collapse; border: 1px solid #D1D2D4; }
+.ticketsList td { height: 78px; vertical-align: top; }
+.ticketList-a-side { min-width: 84px; background-color: #ffffff !important; }
+.ticketList-a-long-side { min-width: 120px; background-color: #ffffff !important; }
+.ticketList-b-side { width: 100%; min-width: 376px; }
+.ticketList-c-side { min-width: 112px; padding-right: 22px; }
+.ticketList-d-side { min-width: 40px; padding-right: 22px; }
+.ticketList-e-side { min-width: 110px; }
+.ticketCustomerLogo { display: table-cell; vertical-align: middle; position: relative; height: 78px; }
+.ticketactivityTime { color: #6C6D6A; }
+.ticketSLA, .ticketInformation { width: 112px; display: table-cell; vertical-align: middle; position: relative; height: 78px; }
+.ticketSLAUnknown { opacity: 0.5; text-align: center; }
+.ticketDetials { display: table-cell; vertical-align: middle; position: relative; }
+.ticketDetialsItem { overflow: hidden; margin: 8px 0px; }
+.ticketSource { width: 18px; display: table-cell; vertical-align: middle; position: relative; height: 78px; padding: 0px 0px 0px 0px; }
+.ticketInformation { width: 160px !important; }
+.ticketInformationItem { overflow: hidden; margin: 8px 0px;  }
+.ticketInformationKey { width: 78px; }
+.ticketInformationKeyShort { width: 12px; margin-right: 4px; }
+.ticketInformationVal { width: 80px; }
+.ticketDetialsTitle { color: #5567DE; margin-right: 6px; }
+.ticketDetialsNumber { color: #6C6C75; }
+.ticketsFilter {
+    position: absolute;
+    right: 0px;
+    width: 210px;
+    background-color: #F6F7F7;
+    padding: 14px;
+}
+.ticketsFilterToggleTitle { color: #4D4B4B; margin-bottom: 10px; width: 155px; }
+.ticketsFilterToggle { margin-top: 20px; }
+.ticketInformationItem { margin: 4px 0px !important; }
+.ticketactivityLabel-inpage { max-width: 150px; display: inline-block; position: relative; top: 2px; }
+
+/* Filter */
+
+#ticketListFilter {
+    border: 1px solid #d3d3d3;
+    background: #fefefe;
+    -moz-border-radius: 5px; /* FF1+ */
+    -webkit-border-radius: 5px; /* Saf3-4 */
+    border-radius: 5px;
+    -moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+    position: fixed;
+    width: 220px;
+    padding: 0px 10px 10px;
+    left: 10px;
+}
+
+.fixedMenu_label {
+    padding: 10px 0 5px;
+    font-weight: 500;
+    width: 100%;
+    font-size: 13px;
+    line-height: 16px;
+}
+
+.abs {
+    position: absolute;
+}
+.ib {
+    display: inline-block !important;
+}
+
+.sprite-closed, .sprite-open, .sprite-upload, .sprite-tsource-email, .sprite-tsource-phone, .sprite-tsource-web, .sprite-tsource-alert, .sprite-ranking-silver, .sprite-ranking-gold, .sprite-ranking-blocked, .sprite-tfilter-open, .sprite-tfilter-closed, .sprite-edit, .sprite-edit-h, .sprite-user, .sprite-user-h, .sprite-settings, .sprite-settings-h, .sprite-assign-agent, .sprite-ranking-normal {
+    background: rgba(0, 0, 0, 0) url("Images/sprites.png") no-repeat scroll 0 0;
+}
+
+
+
+
+/* obj */
+.ticketInfoContainer
+{
+    position: absolute;
+    background: #F7F7F7;
+    width: 240px;
+    min-height: 600px;
+    right: 0px;
+    z-index: 10;
+}
+.ticketInfoContainer .pad { padding: 15px; }
+.ticketSLABox { background: #FCFFF3; padding: 15px; margin-bottom: 14px; min-height: 60px; border-top-left-radius: 5px; border-top-right-radius: 5px; }
+.ticketCommentsContainer { margin-right: 260px; }
+.ticketCommentsContext { padding: 10px 0px; }
+.ticketCommentImg { width: 52px; height: 52px; border: 1px solid #959595; }
+.ticketCommentImg img { width: 50px; height: 50px; }
+.ticketComment table { margin-bottom: 15px; }
+.ticketCommentByEu { margin-bottom: 15px; }
+.ticketCommentByEu .ticketCommentImg { margin-right: 20px; }
+.ticketCommentByCn .ticketCommentImg { margin-left: 20px; }
+.ticketCommentWide { width: 100%; }
+.ticketCommentTop { vertical-align: top; }
+.ticketCommentByEu .static-popover { background-color: #F7F7F7; }
+.ticketCommentByCn .static-popover { background-color: #FCFFF3; }
+.ticketCommentNoteByCn .static-popover { background-color: #FFFFD4 !important; }
+.ticketCommentByEu .right .arrow:after { bottom: -10px; left: 1px; border-left-width: 0; content: " "; border-right-color: #F7F7F7; z-index: 10001; }
+.ticketCommentByEu .left .arrow:after { bottom: -10px; left: 1px; border-left-width: 0; content: " "; border-right-color: #FCFFF3; z-index: 10001; }
+.ticketCommentHeader { color: #898989; margin-bottom: 10px; }
+.ticketCommentUsername { color: #8FBC24; }
+.ticketCommentSubject { margin: 0px 0px 10px 0px; }
+.ticketCommentValue .popover-content { padding: 10px 20px !important; }
+.ticketCommentDesc { line-height: 20px; }
+.ticketEndUserInfo { position: relative; overflow: hidden; margin: 14px 0px; }
+.ticketEndUserInfo .sprite-user { margin: 6px 10px 0px 0px; }
+.ticketEndUserInfo * { line-height: 20px; }
+.ticketProperties { padding: 14px 0px; }
+.ticketCommentHeader .sprite-ranking { display: inline-block; }
+.ticketSLAProgress { position: relative; width: 120px; height: 12px; display: block; vertical-align: initial; background-color: #f7f7f7; padding: 1px; border-radius: 1px; font-size: 6px; box-shadow: inset 0 1px 0 rgba(115,122,136,.18); background-image: linear-gradient(bottom, #edeff4 0%, #e6eaf1 100%); }
+@media (min-width: 1200px) {
+    .ticketSLAProgress-fluid {
+        float: right;
+    }
+}
+.ticketSLAProgressInner-box { width: 28px; background-color: #8dbc00; display:inline-block; height: 100%; border-radius: 1px; }
+.ticketSLAProgressInner-box.bg-success { background-color: #8dbc00; }
+.ticketSLAProgressInner-box.bg-warning { background-color: #f49c00; }
+.ticketSLAProgressInner-box.bg-danger { background-color: #cc362d; }
+.ticketSLAProgressInner-blocker { position: absolute; right: 0px; top: 1px; height: 10px; width: 1%; background-color: #f7f7f7; }
+.ticketactivityLabel { color: White; text-transform: uppercase; padding: 0px 4px; border-radius: 4px; font-weight: bold; }
+.ticketactivityLabelEmpty { width: 9px; display: inline-block; }
+.ticketactivityLabelOrange { background-color: #FFD16C; color: #000000; }
+.ticketactivityLabelGreen { background-color: #B5CE67; color: #000000; }
+.ticketactivityLabelBlue { background-color: #53A1B9; }
+.ticketactivityLabelDefault { background-color: #999999; }
+.ticketCommentsTicketTitle { color: #8FBC24; }
+.ticketCommentCounter { font-size: 28px; line-height: 0px; position: relative; top: 6px; padding: 0px 0px 0px 6px; }
+.ticketCommentAttachmentContainer { overflow: hidden; }
+.ticketCommentAttachmentContainer div { margin-right: 15px; }
+.ticketCommentAttachmentItem { width: 90px; overflow: hidden; }
+.ticketCommentAttachmentItem a { font-size: 30px; padding: 20px 30px; cursor: pointer; text-decoration: none; }
+.ticketCommentAttachmentItem div { text-align: center; width: 85px; }
+.ticketactivityLabel-inpage { max-width: 150px; display: inline-block; position: relative; top: 2px; }
+.ticketCommentValue .popover-content { overflow: hidden; max-width: 1500px; }
+@media (min-width: 1921px) {
+  .ticketCommentValue .popover-content { max-width: 100%; }
+}

@@ -1,0 +1,123 @@
+.alert-ng {
+  color: #31708f;
+  background-color: #d9edf7;
+  border-color: #bce8f1;
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.multiselect-search {
+    height: 40px;
+  }
+	.multiselect-clear-filter {
+		padding: 9px 12px;
+	}
+
+  .btn-group.open,
+  div[class=btn-group] {
+    display: block;
+  }
+
+    .dropdown-toggle .badge {
+            background-color: #e02222;
+            left: 22px;
+            position: absolute;
+            top: 4px;
+        }
+
+    .user-panel>.info {
+            padding: 5px 5px 5px 5px !important;
+            line-height: 1 !important;
+            position: relative !important;
+            left: 0px !important;
+        }
+    label.error {
+        color: red !important;
+        font-style: italic;
+    }
+    .typeahead__filter-button{
+        background-color: #63A4C9 !important;
+    }
+
+
+    /*.tab-content > .tab-pane {
+
+    border-top: 1px solid #d2d6de;
+    padding-top: 12px;
+} */
+
+.nav.nav-pills > li {
+
+    background-color:#d2d6de;
+}
+
+
+
+.lr-p0 {
+  padding-left: 0;
+  padding-right: 0;
+}
+hr {
+  border-style: inset none none;
+}
+/*.nav-tabs-custom {
+
+    box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.1) !important;
+}*/
+.bottom-border {
+    border-bottom: 1px solid #f4f4f4;
+}
+.padding-bottom-8{
+    padding-bottom: 8px;
+}
+.padding-top-10{
+  padding-top: 10px;
+}
+.padding-top-40{
+  padding-top: 40px;
+}
+.top-border {
+  border-top: 1px solid #f4f4f4;
+}
+.top-10px{
+  top: 10px;
+}
+.bot_10px{
+  margin-bottom: 10px;
+}
+
+.relative{
+  position: relative;
+}
+.left-15px{
+  left: 15px;
+}
+.border-top {
+  border-top: 1px solid #f4f4f4;
+}
+
+.skin-blue-light .main-header .navbar .dropdown-menu li a{
+  color: #000 !important;
+}
+.skin-blue-light .main-header .navbar .dropdown-menu li a:hover{
+  color: #fff !important;
+}
+
+.bot_10px{
+  margin-bottom: 10px;
+    }
+.top-10px{
+    top: 10px;
+    position: relative;
+    }
+    .bot-10px{
+  padding-bottom: 10px;
+    }
+.bold{
+  font-weight: bold;
+}
+.unbold{
+  font-weight: normal;
+}

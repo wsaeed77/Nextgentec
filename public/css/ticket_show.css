@@ -1,0 +1,116 @@
+.info>dd, .info>dt {
+    line-height: 3;
+}
+
+.top-border {
+        border-top: 1px solid #f4f4f4;
+    }
+    .top-10px{
+        top: 10px;
+        position: relative;
+    }
+    .bot_10px{
+        margin-bottom: 10px;
+    }
+
+    .margin-right10{
+      margin-right: 10px;
+    }
+
+.bb {
+    background: rgba(0, 0, 0, 0.7) none repeat scroll 0 0;
+   
+    opacity: 1;
+    cursor: pointer;
+    overflow: visible;
+}
+.btn.fancybox {
+    color: #000;
+    font-size: 30px;
+    left: 50%;
+    margin-left: -15px;
+    margin-top: -15px;
+    position: absolute;
+    top: 50%;
+}
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+    background-color: #3c8dbc;
+    border-color: #367fa9;
+    color: #fff;
+    padding: 1px 10px;
+}
+.ms-res-ctn .ms-res-item em {
+   background: none;
+   color: #666;
+    font-style: normal;
+    font-weight: bold;
+}
+
+.country .prop .lbl {
+    color: #aaa;
+    float: left;
+    font-size: 11px;
+    line-height: 11px;
+    margin-left: 25px;
+    margin-right: 5px;
+}
+.country .prop .val {
+    color: #666;
+    font-size: 11px;
+    line-height: 11px;
+}
+.country .prop {
+    float: left;
+    width: 50%;
+}
+.btn-group{
+  display: inline-block !important;
+}
+
+.TicketTitle {
+    color: #8fbc24;
+}
+.b12 {
+    margin-bottom: 12px;
+}
+.t12 {
+    margin-top: 12px;
+}
+.f24 {
+    font-size: 24px !important;
+    line-height: 24px;
+}
+.titleBeforeBreak {
+    margin-bottom: 6px;
+}
+.f14 {
+    font-size: 14px !important;
+    line-height: 14px;
+}
+.breakgreen {
+    border-top: 1px solid #8fbb23;
+    height: 0;
+    width: 100%;
+}
+
+.ticketEndUserInfo {
+    margin: 14px 0;
+    overflow: hidden;
+    position: relative;
+}
+.ticketEndUserInfo * {
+    line-height: 20px;
+}
+.mr6 {
+    margin-right: 6px;
+}
+.b {
+    font-weight: bold;
+}
+.f12 {
+    font-size: 12px !important;
+    line-height: 12px;
+}
+.r{
+  cursor:pointer;
+}

@@ -1,0 +1,9 @@
+/vendor
+/node_modules
+/storage
+/public/customer_files
+Homestead.yaml
+Homestead.json
+.env
+nexgentech.sublime-project
+nexgentech.sublime-workspace

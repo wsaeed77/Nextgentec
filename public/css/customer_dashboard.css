@@ -1,0 +1,195 @@
+
+@media screen and (min-width: 1500px) {
+  .ng-col-xl-6 {
+    width: 50%;
+  }
+  .ng-col-xl-4 {
+    width: 33.33333%;
+  }
+}
+
+.list-form-item {
+    background-color: #F8F8F8;
+    border-top: 1px solid #DEDEDE;
+    border-bottom: 1px solid #DEDEDE;
+    padding: 10px;
+}
+
+.list-form-item-white {
+    background-color: White;
+}
+
+.span-black {
+    color: #333 !important;
+}
+.breakgray {
+    display: block;
+    border-top: 1px solid #000000;
+    height: 0px;
+    width: 100%;
+}
+.ib {
+    display: inline-block !important;
+}
+.f16 {
+    font-size: 16px !important;
+    line-height: 16px;
+}
+.b {
+    font-weight: bold;
+}
+.ellipsis {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.breakgreen {
+    width: 100%;
+    border-top: 1px solid #8FBB23;
+    height: 0px;
+}
+
+.b5 {
+    margin-bottom: 5px;
+}
+
+.titleBeforeBreak {
+    margin-bottom: 6px;
+}
+.tp24 {
+    padding-top: 24px;
+}
+.f14 {
+    font-size: 14px !important;
+    line-height: 14px;
+}
+.t24 {
+    margin-top: 24px;
+}
+
+.mt5 {
+  margin-top: 5px;
+}
+.mr10 {
+  margin-right: 10px;
+}
+.mr5 {
+  margin-right: 5px;
+}
+.badge.btn-success {
+    background-color: #5cb85c;
+}
+.padding_l_r_20{
+padding: 0 20px;
+}
+
+h3.panel-title.pull-left {
+    width: 65%;
+}
+
+.info-box {
+  min-height: 75px !important;
+}
+
+.info-box-icon {
+  height: 75px !important;
+  line-height: 75px !important;
+  width: 75px !important;
+}
+
+.info-box-content {
+  margin-left: 75px !important;
+}
+
+@media (min-width: 992px) {
+  .modal-wide {
+    width: 930px !important;
+    }
+}
+.no-gutter{
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.no-margin {
+  margin: 0;
+}
+
+div.dashtbl {
+
+}
+
+button.btn-xs {
+    padding: 5px;
+}
+
+button.btn-xs i {
+    padding: 0 4px 0 4px;
+    position: relative;
+    top: 1px;
+}
+
+dl.dlhorizon {
+    width: 220px;
+}
+dl.dlhorizon dt {
+  float:left;
+  clear: left;
+  width: 120px;
+}
+dl.dlhorizon dd {
+    clear: left;
+    float: left;
+    margin-left: 70px;
+}
+dl.dlhorizon dt + dd {
+    float: left;
+    clear: none;
+    margin-left: 0;
+}
+
+td.nettd {
+    text-align: right;
+}
+
+table tr.spacer {
+    height: 10px;
+}
+table tr.netTbl td {
+    padding: 10px !important;
+}
+
+tbody#loc_networks tr.trb td {
+  padding: 10px 10px 0 10px;
+  border-top: 1px solid #DEDEDE;
+}
+
+tbody#loc_networks tr.locnetHead td {
+  padding: 10px !important;
+  border-top: 1px solid #DEDEDE;
+  border-bottom: 1px solid #DEDEDE;
+}
+
+button.btn-xs i {
+    padding: 0 4px 0 4px;
+    position: relative;
+    top: 1px;
+}
+/* Calendar */
+.fc-toolbar h2 {
+  font-size: 1.1em;
+  padding-top: 3px;
+}
+.box-body .fc {
+  margin-top: 0px !important;
+}
+.fc-button {
+  height: auto !important;
+}
+
+.popover{
+    max-width: 100%; /* Max Width of the popover (depending on the container!) */
+}
+
+.ng-hand {
+  cursor: pointer;
+}

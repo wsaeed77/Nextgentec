@@ -1,0 +1,7 @@
+{
+	"name": "Backupmanager",
+	"slug": "backupmanager",
+	"version": "1.0",
+	"description": "This is the description for the Backupmanager module.",
+	"enabled": true
+}

@@ -1,0 +1,7 @@
+{
+	"name": "Crm",
+	"slug": "crm",
+	"version": "1.0",
+	"description": "This is the description for the Crm module.",
+	"enabled": true
+}
