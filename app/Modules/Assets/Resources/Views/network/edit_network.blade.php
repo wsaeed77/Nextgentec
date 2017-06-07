@@ -21,7 +21,7 @@
                 <?php } else { ?>
                       {!! Form::select('customer', $customers,'',['class'=>'form-control multiselect','placeholder' => 'Pick a Customer','id'=>'edit_network_customer'])!!}
 
-                    <?php } ?>
+               <?php } ?>
             </div>
 
             <div class="form-group">

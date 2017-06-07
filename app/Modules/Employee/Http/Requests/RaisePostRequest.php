@@ -2,9 +2,10 @@
 
 namespace App\Modules\Employee\Http\Requests;
 
+use Illuminate\Foundation\Http\FormRequest;
 use App\Http\Requests\Request;
 
-class RaisePostRequest extends Request
+class RaisePostRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

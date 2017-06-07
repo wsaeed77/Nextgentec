@@ -2,6 +2,7 @@
 
 namespace App\Model;
 
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Passwords\CanResetPassword;
@@ -22,6 +23,7 @@ class User extends Model implements
     AuthorizableContract,
     CanResetPasswordContract
 {
+    use Notifiable;
     //use EntrustUserTrait; // add this trait to your user model
 
 

@@ -322,35 +322,35 @@ Route::group(['middleware' => 'web'], function () {
 
 
 
-Route::group(['prefix' => 'ticketstatus'], function () {
-    Route::get('/', ['as'=>'admin.ticket.status.index','middleware' => ['permission:list_ticket_status'], 'uses' => 'TicketsStatus@index']);
-    Route::get('create', ['as'=>'admin.ticket.status.create','middleware' => ['permission:create_ticket_status'], 'uses' => 'TicketsStatus@create']);
-    Route::get('edit/{id}', ['as'=>'admin.ticket.status.edit','middleware' => ['permission:create_ticket_status'], 'uses' => 'TicketsStatus@edit']);
+            Route::group(['prefix' => 'ticketstatus'], function () {
+                Route::get('/', ['as'=>'admin.ticket.status.index','middleware' => ['permission:list_ticket_status'], 'uses' => 'TicketsStatus@index']);
+                Route::get('create', ['as'=>'admin.ticket.status.create','middleware' => ['permission:create_ticket_status'], 'uses' => 'TicketsStatus@create']);
+                Route::get('edit/{id}', ['as'=>'admin.ticket.status.edit','middleware' => ['permission:create_ticket_status'], 'uses' => 'TicketsStatus@edit']);
 
-            //Route::post('create', ['as'=>'admin.ticket.store','middleware' => ['permission:create_ticket'], 'uses' => 'TicketController@store']);
-    Route::post('store', ['as'=>'admin.ticket.status.store','middleware' => ['permission:create_ticket_status'], 'uses' => 'TicketsStatus@store']);
-    Route::post('/update', ['as'=>'admin.ticket.status.update','middleware' => ['permission:create_ticket_status'], 'uses' => 'TicketsStatus@update']);
-    Route::get('/status_list', ['as'=>'admin.tickets.status.list', 'uses' => 'TicketsStatus@index']);
+                        //Route::post('create', ['as'=>'admin.ticket.store','middleware' => ['permission:create_ticket'], 'uses' => 'TicketController@store']);
+                Route::post('store', ['as'=>'admin.ticket.status.store','middleware' => ['permission:create_ticket_status'], 'uses' => 'TicketsStatus@store']);
+                Route::post('/update', ['as'=>'admin.ticket.status.update','middleware' => ['permission:create_ticket_status'], 'uses' => 'TicketsStatus@update']);
+                Route::get('/status_list', ['as'=>'admin.tickets.status.list', 'uses' => 'TicketsStatus@index']);
 
-    Route::post('delete_ticket_status', ['as'=>'admin.tickets.status.delete', 'middleware' => ['permission:delete_ticket_status'],'uses' => 'TicketsStatus@ajaxDelete']);
-});
+                Route::post('delete_ticket_status', ['as'=>'admin.tickets.status.delete', 'middleware' => ['permission:delete_ticket_status'],'uses' => 'TicketsStatus@ajaxDelete']);
+            });
 
-Route::group(['prefix' => 'service'], function () {
-    Route::get('/', ['as'=>'admin.service_item.index','middleware' => ['permission:customer_service_type_list'], 'uses' => 'ServiceItemsController@index']);
-    Route::get('create', ['as'=>'admin.service_item.create','middleware' => ['permission:customer_service_type_add'], 'uses' => 'ServiceItemsController@create']);
-    Route::get('delete/{id}', ['as'=>'admin.service_item.destroy','middleware' => ['permission:customer_service_type_delete'], 'uses' => 'ServiceItemsController@destroy']);
-    Route::post('/', ['as'=>'admin.service_item.store','middleware' => ['permission:customer_service_type_add'], 'uses' => 'ServiceItemsController@store']);
-});
+            Route::group(['prefix' => 'service'], function () {
+                Route::get('/', ['as'=>'admin.service_item.index','middleware' => ['permission:customer_service_type_list'], 'uses' => 'ServiceItemsController@index']);
+                Route::get('create', ['as'=>'admin.service_item.create','middleware' => ['permission:customer_service_type_add'], 'uses' => 'ServiceItemsController@create']);
+                Route::get('delete/{id}', ['as'=>'admin.service_item.destroy','middleware' => ['permission:customer_service_type_delete'], 'uses' => 'ServiceItemsController@destroy']);
+                Route::post('/', ['as'=>'admin.service_item.store','middleware' => ['permission:customer_service_type_add'], 'uses' => 'ServiceItemsController@store']);
+            });
 
 
         // Calendar
-Route::group(['prefix' => 'calendar'], function () {
-    Route::get('eventlist', ['as'=>'admin.crm.calendar.eventlist','middleware' => ['permission:view_customer_detail'], 'uses' => 'CrmController@ajaxCalGetEvents']);
-});
+            Route::group(['prefix' => 'calendar'], function () {
+                Route::get('eventlist', ['as'=>'admin.crm.calendar.eventlist','middleware' => ['permission:view_customer_detail'], 'uses' => 'CrmController@ajaxCalGetEvents']);
+            });
 
 
-Route::get('contacts_by_loc/{loc_id}', ['as'=>'admin.crm.contacts_by_loc','middleware' => ['permission:customer_service_type_add'], 'uses' => 'TicketController@getContactsByLoc']);
-});
+            Route::get('contacts_by_loc/{loc_id}', ['as'=>'admin.crm.contacts_by_loc','middleware' => ['permission:customer_service_type_add'], 'uses' => 'TicketController@getContactsByLoc']);
+        });
 
 
 
@@ -358,6 +358,5 @@ Route::get('contacts_by_loc/{loc_id}', ['as'=>'admin.crm.contacts_by_loc','middl
     //Route::resource('/raise','RaiseController');
 
     //Route::get('calander','EmployeeController@googleCalander');
-});
-
+    });
 });

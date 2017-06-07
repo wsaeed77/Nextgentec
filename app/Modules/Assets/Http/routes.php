@@ -40,7 +40,6 @@ Route::group(['middleware' => 'web'], function () {
             Route::get('/pbx_index_bycustomer/{id}', ['as'=>'admin.assets.pbx_index_by_cust','middleware' => ['permission:list_assets'], 'uses' => 'AssetsController@pbxIndex']);
 
             Route::get('/server_index_bycustomer/{id}', ['as'=>'admin.assets.server_index_by_cust','middleware' => ['permission:list_assets'], 'uses' => 'AssetsController@serverIndex']);
-
         });
 
         Route::group(['prefix' => 'knowledge','middleware' => ['role:admin|manager|technician']], function () {
@@ -130,7 +129,5 @@ Route::group(['middleware' => 'web'], function () {
             Route::get('ajax_detail/{id}', ['as'=>'admin.knowledge.ajax_details','middleware' => ['permission:view_knowledge'], 'uses' => 'KnowledgeController@ajaxDetails']);
         // Ajax
         });
-       
     });
-
 });

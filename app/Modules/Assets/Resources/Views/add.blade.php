@@ -52,7 +52,7 @@
 
                              <?php } else { ?>
                                         {!! Form::select('customer', $customers, '',['class'=>'form-control multiselect','placeholder' => 'Pick a Customer','onChange'=>'load_service_items(this.value)'])!!}
-                                   <?php } ?>
+                                <?php } ?>
 
                             </div>
 
