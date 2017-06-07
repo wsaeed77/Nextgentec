@@ -321,14 +321,14 @@ class TicketController extends Controller
         //saving customer_contact value in session to display upon validation in blade.
         $request->session()->put('cust_cont', $request->customer_contact);
 
-        $validator = \Validator::make(\Input::all(), [
+        $validator = \Validator::make(\Request::all(), [
             'customer_contact' => 'required',
             'title'=>'required',
             'body'=>'required',
             'status'=>'required',
             ]);
         if ($validator->fails()) {
-            return back()->withErrors($validator)->withInput(\Input::except('customer_contact'));
+            return back()->withErrors($validator)->withInput(\Request::except('customer_contact'));
         }
 
         $ids = explode('_', $request->customer_contact);
