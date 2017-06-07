@@ -317,7 +317,7 @@ class TicketController extends Controller
         config(['services.slack.token' => $slack_access_token->value]);
 
         //customer contact is text field but with magic suggest it adds an array, throwing exception upon validation, so modifyig it, i.e assigning the aaray value to customer_contact
-        $request->merge(array('customer_contact' => $request->customer_contact[0]));
+        $request->merge(['customer_contact' => $request->customer_contact[0]]);
         //saving customer_contact value in session to display upon validation in blade.
         $request->session()->put('cust_cont', $request->customer_contact);
 
@@ -597,7 +597,7 @@ class TicketController extends Controller
         }
 
         if ($ticket->type=='email' && $ticket->email!='' && $flag =='reply') {
-            $variables = array("firstname"=>$ticket->sender_name,"lastname"=>"","response"=>$response_body);
+            $variables = ["firstname"=>$ticket->sender_name,"lastname"=>"","response"=>$response_body];
             $email_body = Auth::user()->email_template;
 
             foreach ($variables as $key => $value) {
@@ -606,7 +606,7 @@ class TicketController extends Controller
 
                     //echo $string;
 
-            Mail::send('crm::ticket.email.response', array('body'=>$email_body), function ($message) use ($ticket, $gmail_address, $response, $bcc, $cc) {
+            Mail::send('crm::ticket.email.response', ['body'=>$email_body], function ($message) use ($ticket, $gmail_address, $response, $bcc, $cc) {
 
                    /* $swiftMessage = $message->getSwiftMessage();
                     $headers = $swiftMessage->getHeaders();
@@ -643,7 +643,7 @@ class TicketController extends Controller
         }
 
         if ($ticket->type=='ticket' && $flag =='reply') {
-               $variables = array("firstname"=>$ticket->customer_contact->f_name,"lastname"=>$ticket->customer_contact->l_name,"response"=>$response_body);
+               $variables = ["firstname"=>$ticket->customer_contact->f_name,"lastname"=>$ticket->customer_contact->l_name,"response"=>$response_body];
                $email_body = Auth::user()->email_template;
 
             foreach ($variables as $key => $value) {
@@ -653,7 +653,7 @@ class TicketController extends Controller
                     //echo $string;
 
 
-              Mail::send('crm::ticket.email.response', array('body'=>$email_body), function ($message) use ($ticket, $gmail_address, $response, $bcc, $cc, $request) {
+              Mail::send('crm::ticket.email.response', ['body'=>$email_body], function ($message) use ($ticket, $gmail_address, $response, $bcc, $cc, $request) {
 
                 if (count($bcc)>0) {
                     foreach ($bcc as $key => $bcc_email) {
@@ -1171,21 +1171,21 @@ class TicketController extends Controller
                 $tickets[] = $ticket_arr;
             }
 
-            echo json_encode(array(
+            echo json_encode([
             "status" => true,
             "error"  => null,
-            "data"   => array(
+            "data"   => [
                 "tickets"   => $tickets
-                )
-            ));
+                ]
+            ]);
         } else {
-            echo json_encode(array(
+            echo json_encode([
             "status" => true,
             "error"  => null,
-            "data"   => array(
+            "data"   => [
             "tickets"   => []
-            )
-            ));
+            ]
+            ]);
         }
     }
 

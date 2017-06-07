@@ -77,7 +77,7 @@ class PendingLeaveNotification extends Command
 
 
 
-        Mail::send('crm::ticket.email.response', array('body'=>$email_body), function ($message) use ($gmail_address) {
+        Mail::send('crm::ticket.email.response', ['body'=>$email_body], function ($message) use ($gmail_address) {
 
                    /* $swiftMessage = $message->getSwiftMessage();
                     $headers = $swiftMessage->getHeaders();

@@ -363,33 +363,33 @@ class EmployeeController extends Controller
         $calendarId = "adnan.nexgentec@gmail.com";
         $result     = $calendar->get($calendarId);
 
-        $calendar->eventPost(array(
+        $calendar->eventPost([
                   'summary' => 'Google I/O 2015',
                   'location' => '800 Howard St., San Francisco, CA 94103',
                   'description' => 'A chance to hear more about Google\'s developer products.',
-                  'start' => array(
+                  'start' => [
                     'dateTime' => '2015-05-28T09:00:00-07:00',
                     'timeZone' => 'America/Los_Angeles',
-                  ),
-                  'end' => array(
+                  ],
+                  'end' => [
                     'dateTime' => '2015-05-28T17:00:00-07:00',
                     'timeZone' => 'America/Los_Angeles',
-                  ),
-                  'recurrence' => array(
+                  ],
+                  'recurrence' => [
                     'RRULE:FREQ=DAILY;COUNT=2'
-                  ),
-                  'attendees' => array(
-                    array('email' => 'lpage@example.com'),
-                    array('email' => 'sbrin@example.com'),
-                  ),
-                  'reminders' => array(
+                  ],
+                  'attendees' => [
+                    ['email' => 'lpage@example.com'],
+                    ['email' => 'sbrin@example.com'],
+                  ],
+                  'reminders' => [
                     'useDefault' => false,
-                    'overrides' => array(
-                      array('method' => 'email', 'minutes' => 24 * 60),
-                      array('method' => 'popup', 'minutes' => 10),
-                    ),
-                  ),
-                ), $calendarId);
+                    'overrides' => [
+                      ['method' => 'email', 'minutes' => 24 * 60],
+                      ['method' => 'popup', 'minutes' => 10],
+                    ],
+                  ],
+                ], $calendarId);
 
 
      

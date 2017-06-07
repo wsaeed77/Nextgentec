@@ -58,7 +58,7 @@ class EntrustAbility
             }
         }
 
-        if ($this->auth->guest() || !$request->user()->ability($roles, $permissions, array('validate_all' => $validateAll))) {
+        if ($this->auth->guest() || !$request->user()->ability($roles, $permissions, ['validate_all' => $validateAll])) {
             return response('Forbidden: You are not authorized to access this resource.', 403);
         }
 

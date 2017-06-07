@@ -86,27 +86,27 @@ class AppointmentController extends Controller
 
         $end = $endDateTime->format(\DateTime::ISO8601);
        
-        $post = $calendar->eventPost(array(
+        $post = $calendar->eventPost([
               'summary' =>  html_entity_decode('@'.$technician->f_name.' '.$timeframe.' '.$request->appointment_title),
               'location' => $location->address.' '.$location->city.' '.$location->state.' '.$location->zip,
               'visibility' => 'private',
               'description' =>  $description,
-              'start' => array(
+              'start' => [
                 'dateTime' => $start,
                 'timeZone' => $this->time_zone,
-              ),
-              'end' => array(
+              ],
+              'end' => [
                 'dateTime' => $end,
                 'timeZone' => $this->time_zone,
-              ),
-              'reminders' => array(
+              ],
+              'reminders' => [
                 'useDefault' => false,
-                'overrides' => array(
-                  array('method' => 'email', 'minutes' => 24 * 60),
-                  array('method' => 'popup', 'minutes' => 10),
-                ),
-              ),
-            ));
+                'overrides' => [
+                  ['method' => 'email', 'minutes' => 24 * 60],
+                  ['method' => 'popup', 'minutes' => 10],
+                ],
+              ],
+            ]);
             //dd($post);
             $appointment              = new CustomerAppointment;
             $appointment->customer_id = Session::get('cust_id');
@@ -186,28 +186,28 @@ class AppointmentController extends Controller
         $description .= ' Notes : '.$request->notes;
 
 
-        $post = $calendar->eventUpdate($event_id, array(
+        $post = $calendar->eventUpdate($event_id, [
               'summary' =>  html_entity_decode('@'.$technician->f_name.' '.$timeframe.' '.$request->appointment_title),
               'location' => $location->address.' '.$location->city.' '.$location->state.' '.$location->zip,
               'visibility' => 'private',
               'description' => $description,
-              'start' => array(
+              'start' => [
                 'dateTime' => $start,
                 'timeZone' => $this->time_zone,
-              ),
-              'end' => array(
+              ],
+              'end' => [
                 'dateTime' => $end,
                 'timeZone' => $this->time_zone,
-              ),
+              ],
              
-              'reminders' => array(
+              'reminders' => [
                 'useDefault' => false,
-                'overrides' => array(
-                  array('method' => 'email', 'minutes' => 24 * 60),
-                  array('method' => 'popup', 'minutes' => 10),
-                ),
-              ),
-            ));
+                'overrides' => [
+                  ['method' => 'email', 'minutes' => 24 * 60],
+                  ['method' => 'popup', 'minutes' => 10],
+                ],
+              ],
+            ]);
              
             $appointment              =  CustomerAppointment::where('event_id_google', $event_id)->first();
            

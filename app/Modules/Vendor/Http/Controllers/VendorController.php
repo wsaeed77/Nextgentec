@@ -681,21 +681,21 @@ class VendorController extends Controller
                                 'vend_contact'=>$vendor->name];
             }
 
-             echo json_encode(array(
+             echo json_encode([
                 "status" => true,
                 "error"  => null,
-                "data"   => array(
+                "data"   => [
                     "vend_contacts"   => $contacts
-                    )
-                ));
+                    ]
+                ]);
         } else {
-            echo json_encode(array(
+            echo json_encode([
             "status" => true,
             "error"  => null,
-            "data"   => array(
+            "data"   => [
                 "vend_contacts"   => []
-                )
-            ));
+                ]
+            ]);
         }
     }
 

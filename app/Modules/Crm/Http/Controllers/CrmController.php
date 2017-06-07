@@ -1290,21 +1290,21 @@ class CrmController extends Controller
                 $customers[] = ['id'=>$customer->id,'cust_name'=>$customer->name];
             }
 
-            echo json_encode(array(
+            echo json_encode([
             "status" => true,
             "error"  => null,
-            "data"   => array(
+            "data"   => [
             "customers"   => $customers
-            )
-            ));
+            ]
+            ]);
         } else {
-            echo json_encode(array(
+            echo json_encode([
             "status" => true,
             "error"  => null,
-            "data"   => array(
+            "data"   => [
             "customers"   => []
-            )
-            ));
+            ]
+            ]);
         }
     }
 
@@ -1323,21 +1323,21 @@ class CrmController extends Controller
                 'loc_name'=>$location->location_name.' ('.$location->customer->name.')'];
             }
 
-             echo json_encode(array(
+             echo json_encode([
               "status" => true,
               "error"  => null,
-              "data"   => array(
+              "data"   => [
                 "locations"   => $locations
-              )
-              ));
+              ]
+              ]);
         } else {
-            echo json_encode(array(
+            echo json_encode([
             "status" => true,
             "error"  => null,
-            "data"   => array(
+            "data"   => [
             "locations"   => []
-            )
-            ));
+            ]
+            ]);
         }
     }
 
@@ -1362,21 +1362,21 @@ class CrmController extends Controller
                 //dd($location->customer);
             }
 
-            echo json_encode(array(
+            echo json_encode([
             "status" => true,
             "error"  => null,
-            "data"   => array(
+            "data"   => [
             "cust_contacts"   => $contacts
-            )
-            ));
+            ]
+            ]);
         } else {
-            echo json_encode(array(
+            echo json_encode([
             "status" => true,
             "error"  => null,
-            "data"   => array(
+            "data"   => [
             "cust_contacts"   => []
-            )
-            ));
+            ]
+            ]);
         }
     }
 

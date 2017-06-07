@@ -77,11 +77,11 @@ class ZohoController extends Controller
                 $post['contact_persons'] = $contacts;
                 $post['billing_address'] = $billing_address;
 
-                $data = array(
+                $data = [
                 'authtoken' => $zoho_auth_token->value,
                 'JSONString' => json_encode($post)
 
-                );
+                ];
 
                 $url = 'https://invoice.zoho.com/api/v3/contacts';
 
@@ -138,9 +138,9 @@ class ZohoController extends Controller
     function getZohoContacts()
     {
         $zoho_auth_token =  Config::where('key', 'auth_token')->where('title', 'zoho')->first();
-        $data = array(
+        $data = [
         'authtoken' => $zoho_auth_token->value
-        );
+        ];
 
         $url = 'https://invoice.zoho.com/api/v3/contacts?authtoken='.$zoho_auth_token->value;
         $curl = curl_init($url);
@@ -192,9 +192,9 @@ class ZohoController extends Controller
     function importSelectedContacts(Request $request)
     {
         $zoho_auth_token =  Config::where('key', 'auth_token')->where('title', 'zoho')->first();
-        $data = array(
+        $data = [
         'authtoken' => $zoho_auth_token->value
-        );
+        ];
 
         $zoho_unimported_contacts = Session::get('unimported_zoho_contacts');
 
@@ -290,10 +290,10 @@ print_r($contact);*/
     {
         //$zoho = Zoho::first();
         $zoho_auth_token =  Config::where('key', 'auth_token')->where('title', 'zoho')->first();
-        $data = array(
+        $data = [
                 'authtoken' => $zoho_auth_token->value
 
-                );
+                ];
 
             $url = 'https://invoice.zoho.com/api/v3/contacts?authtoken='.$zoho_auth_token->value;
 
@@ -440,10 +440,10 @@ print_r($contact);*/
     {
         $this->customer = Customer::with('invoices')->where('id', $cust_id)->first();
 
-        $curlParams = array(
+        $curlParams = [
         'customer_id' => $this->customer['zohoid'],
         'status' => $status
-        );
+        ];
 
         return $this->zohocurl('invoices', $curlParams)->invoices;
     }
@@ -459,7 +459,7 @@ print_r($contact);*/
     private function getRecurringInvoices($cust_id, $status)
     {
         $customer = Customer::with('invoices')->where('id', $cust_id)->first();
-        return $this->zohocurl('recurringinvoices', array('customer_id' => $customer['zohoid']));
+        return $this->zohocurl('recurringinvoices', ['customer_id' => $customer['zohoid']]);
     }
 
     /**
@@ -470,14 +470,14 @@ print_r($contact);*/
      */
     private function getInvoice($zoho_id)
     {
-        return $this->zohocurl('invoices/'.$zoho_id, array('accept' => 'json'));
+        return $this->zohocurl('invoices/'.$zoho_id, ['accept' => 'json']);
     }
 
     function importInvoices($cust_id)
     {
         $customer = Customer::with('invoices')->where('id', $cust_id)->first();
 
-        $curlData = $this->zohocurl('invoices', array('customer_id' => $customer['zohoid'], 'per_page' => '100'));
+        $curlData = $this->zohocurl('invoices', ['customer_id' => $customer['zohoid'], 'per_page' => '100']);
 
         $continue = true;
         $page = 2;
@@ -508,12 +508,12 @@ print_r($contact);*/
                 $qty++;
             }
             $continue = $curlData->page_context->has_more_page;
-            $curlData = $this->zohocurl('invoices', array('customer_id' => $customer['zohoid'], 'per_page' => '100', 'page' => $page));
+            $curlData = $this->zohocurl('invoices', ['customer_id' => $customer['zohoid'], 'per_page' => '100', 'page' => $page]);
         }
-        $result = array(
+        $result = [
         'success' => 'Invoices imported',
         'quantity' => $qty
-        );
+        ];
         return json_encode($result);
     }
 
@@ -524,7 +524,7 @@ print_r($contact);*/
     {
         $invoices = $this->getInvoices($cust_id, $status);
 
-        $return = array();
+        $return = [];
         $i=0;
         foreach ($invoices as $invoice) {
             if ($status == 'unpaid' && $invoice->status != 'paid') {
@@ -553,7 +553,7 @@ print_r($contact);*/
         $result = $this->getRecurringInvoices($cust_id, $status);
         $recInv = $result->recurring_invoices;
 
-        $return = array();
+        $return = [];
         $i=0;
         foreach ($recInv as $invoice) {
             $return[$i]['totalAmt'] = '$' . number_format($invoice->total, 2);
@@ -570,31 +570,31 @@ print_r($contact);*/
     {
         $unpaid_invoices = $this->getInvoices($cust_id, 'unpaid');
 
-        $result = array(
+        $result = [
         'credit_limit_standing' => null,
         'credit_limit_used' => null,
         'qty_overdue' => 0,
         'qty_waiting' => 0,
         'amt_overdue' => 0,
         'amt_waiting' => 0,
-        'waiting' => array(),
-        'overdue' => array()
-        );
+        'waiting' => [],
+        'overdue' => []
+        ];
         foreach ($unpaid_invoices as $invoice) {
             if ($invoice->status == 'overdue') {
-                $overdue = array(
+                $overdue = [
                 'invoice_number' => $invoice->invoice_number,
                 'due_days' => $invoice->due_days
-                );
+                ];
                 array_push($result['overdue'], $overdue);
                 $result['qty_overdue']++;
                 $result['amt_overdue'] += $invoice->balance;
             }
             if ($invoice->status == 'sent') {
-                $waiting = array(
+                $waiting = [
                 'invoice_number' => $invoice->invoice_number,
                 'due_days' => $invoice->due_days
-                );
+                ];
                 array_push($result['waiting'], $waiting);
                 $result['qty_waiting']++;
                 $result['amt_waiting'] += $invoice->balance;

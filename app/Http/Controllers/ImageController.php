@@ -17,7 +17,7 @@ class ImageController extends Controller
 {
     function imageUpload(Request $request)
     {
-        $allowed = array('png', 'jpg', 'gif');
+        $allowed = ['png', 'jpg', 'gif'];
         $rules = [
                 'file' => 'required|image|mimes:jpeg,jpg,png,gif'
         ];
@@ -38,11 +38,11 @@ class ImageController extends Controller
                     if (Storage::MakeDirectory($path, 0775, true)) {
                         if ($file->move($path, $fileName)) {
                             $url = url(URL::route('get.image', ['folder' => $image_dir,'filename' => $fileName]));
-                            return json_encode(array(
+                            return json_encode([
                                 'url' => $url,
                                 'dir' => $image_dir,
                                 'id' => $fileName
-                            ));
+                            ]);
                             exit;
                         }
                     } else {

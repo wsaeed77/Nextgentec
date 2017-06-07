@@ -52,7 +52,7 @@ class ProvisioningController extends Controller
         }
 
         \Httpauth::secure();
-        $config = array('username' => 'admin', 'password' => '1234f');
+        $config = ['username' => 'admin', 'password' => '1234f'];
         \Httpauth::make($config)->secure();
     }
 }

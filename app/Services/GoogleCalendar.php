@@ -33,7 +33,7 @@ class GoogleCalendar
 
         $key = file_get_contents($key_file_location);
         /* Add the scopes you need */
-        $scopes = array('https://www.googleapis.com/auth/calendar');
+        $scopes = ['https://www.googleapis.com/auth/calendar'];
         $cred = new \Google_Auth_AssertionCredentials(
             $service_account_name,
             $scopes,
@@ -65,7 +65,7 @@ class GoogleCalendar
     }
     function eventList($startDate = null, $endDate = null)
     {
-        $params = array();
+        $params = [];
         if (isset($startDate)) {
             $params['timeMin'] = $startDate . 'T00:00:00-05:00';
         }

@@ -26,7 +26,7 @@ class GoogleGmail
         $auth_secret =  Config::where('key', 'gmail_auth_client_secret')->first();
         $redirect_uri =  Config::where('key', 'redirect_uri')->first();
 
-        $this->scopes = implode(' ', array( \Google_Service_Gmail::GMAIL_READONLY, \Google_Service_Gmail::GMAIL_COMPOSE,\Google_Service_Gmail::GMAIL_SEND));
+        $this->scopes = implode(' ', [ \Google_Service_Gmail::GMAIL_READONLY, \Google_Service_Gmail::GMAIL_COMPOSE,\Google_Service_Gmail::GMAIL_SEND]);
 
         $this->client = new \Google_Client();
         $this->client->setApplicationName(\Config::get('google.application_name'));
@@ -169,7 +169,7 @@ class GoogleGmail
                 }
             }
             if ($FOUND_BODY && count($parts) > 1) {
-                $images_linked = array();
+                $images_linked = [];
                 foreach ($parts as $part) {
                     if ($part['filename']) {
                         array_push($images_linked, $part);
@@ -204,8 +204,8 @@ class GoogleGmail
                 }
                 preg_match_all('/src="cid:(.*)"/Uims', $FOUND_BODY, $matches);
                 if (count($matches)) {
-                    $search = array();
-                    $replace = array();
+                    $search = [];
+                    $replace = [];
                     // let's trasnform the CIDs as base64 attachements
                     foreach ($matches[1] as $match) {
                         foreach ($images_linked as $img_linked) {
@@ -217,7 +217,7 @@ class GoogleGmail
                                         $search = "src=\"cid:$match\"";
                                         $mimetype = $img_linked->mimeType;
                                         $attachment = $gmail->users_messages_attachments->get('me', $mlist->id, $img_linked['body']->attachmentId);
-                                        $data64 = strtr($attachment->getData(), array('-' => '+', '_' => '/'));
+                                        $data64 = strtr($attachment->getData(), ['-' => '+', '_' => '/']);
                                         $replace = "src=\"data:" . $mimetype . ";base64," . $data64 . "\"";
                                         $FOUND_BODY = str_replace($search, $replace, $FOUND_BODY);
                                     }
@@ -288,7 +288,7 @@ class GoogleGmail
 
                     $file_name = $part->getFilename();
 
-                    $data1 = strtr($data->getData(), array('-' => '+', '_' => '/'));
+                    $data1 = strtr($data->getData(), ['-' => '+', '_' => '/']);
                     $fh = fopen(public_path("attachments/$file_name"), "w+");
                          //fwrite($fh, base64_decode($data->data));
 
@@ -391,7 +391,7 @@ class GoogleGmail
                     }
                 }
                 if ($FOUND_BODY && count($parts) > 1) {
-                     $images_linked = array();
+                     $images_linked = [];
                     foreach ($parts as $part) {
                         if ($part['filename']) {
                             array_push($images_linked, $part);
@@ -426,8 +426,8 @@ class GoogleGmail
                     }
                         preg_match_all('/src="cid:(.*)"/Uims', $FOUND_BODY, $matches);
                     if (count($matches)) {
-                        $search = array();
-                        $replace = array();
+                        $search = [];
+                        $replace = [];
                         // let's trasnform the CIDs as base64 attachements
                         foreach ($matches[1] as $match) {
                             foreach ($images_linked as $img_linked) {
@@ -439,7 +439,7 @@ class GoogleGmail
                                             $search = "src=\"cid:$match\"";
                                             $mimetype = $img_linked->mimeType;
                                             $attachment = $this->service->users_messages_attachments->get('me', $mlist->id, $img_linked['body']->attachmentId);
-                                            $data64 = strtr($attachment->getData(), array('-' => '+', '_' => '/'));
+                                            $data64 = strtr($attachment->getData(), ['-' => '+', '_' => '/']);
                                             $replace = "src=\"data:" . $mimetype . ";base64," . $data64 . "\"";
                                             $FOUND_BODY = str_replace($search, $replace, $FOUND_BODY);
                                         }
@@ -521,7 +521,7 @@ class GoogleGmail
 
                         $file_name = $part->getFilename();
 
-                        $data1 = strtr($data->getData(), array('-' => '+', '_' => '/'));
+                        $data1 = strtr($data->getData(), ['-' => '+', '_' => '/']);
                         $fh = fopen(public_path("attachments/$file_name"), "w+");
                           //fwrite($fh, base64_decode($data->data));
 
@@ -571,7 +571,7 @@ class GoogleGmail
     function modifyEmail()
     {
         $modify = new \Google_Service_Gmail_ModifyThreadRequest();
-        $modify->setRemoveLabelIds(array("UNREAD"));
+        $modify->setRemoveLabelIds(["UNREAD"]);
     
 
         $message = $this->service->users_threads->modify('me', 20, $modify);

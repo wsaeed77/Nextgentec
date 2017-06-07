@@ -176,7 +176,7 @@ class AjaxController extends Controller
             //$body .= $email_signature;
 
 
-          Mail::send('crm::ticket.email.response', array('body'=>$body), function ($message) use ($request, $gmail_address, $to, $cc) {
+          Mail::send('crm::ticket.email.response', ['body'=>$body], function ($message) use ($request, $gmail_address, $to, $cc) {
 
                   
                   

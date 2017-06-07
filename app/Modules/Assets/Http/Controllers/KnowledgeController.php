@@ -608,15 +608,15 @@ class KnowledgeController extends Controller
 
         if (empty(session('imageId'))) {
             session(['imageId' => $id]);
-            return json_encode(array('imageId' => $id));
+            return json_encode(['imageId' => $id]);
         } else {
-            return json_encode(array('imageId' => session('imageId')));
+            return json_encode(['imageId' => session('imageId')]);
         }
     }
 
     public function storeImage(Request $request)
     {
-        $allowed = array('png', 'jpg', 'gif');
+        $allowed = ['png', 'jpg', 'gif'];
         $rules = [
             'file' => 'required|image|mimes:jpeg,jpg,png,gif'
         ];
@@ -639,11 +639,11 @@ class KnowledgeController extends Controller
                         if ($file->move($path, $fileName)) {
                             $url = parse_url(URL::route('admin.knowledge.get.image', ['filename' => $fileName, 'folder' => $image_dir ]), PHP_URL_PATH);
                             //$url = url($purl);
-                            return json_encode(array(
+                            return json_encode([
                                 'url' => $url,
                                 'dir' => $image_dir,
                                 'id' => $fileName
-                            ), JSON_UNESCAPED_SLASHES);
+                            ], JSON_UNESCAPED_SLASHES);
                             exit;
                         }
                     } else {

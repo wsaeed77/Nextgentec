@@ -461,31 +461,31 @@ class LeaveController extends Controller
         // dd($request->all());
         $leave  = Leave::where('id', $request->leave_id)->with('user.employee')->first();
         $calendar   = new GoogleCalendar;
-        $post = $calendar->eventPost(array(
+        $post = $calendar->eventPost([
               'summary' => $leave->user->f_name.' '.$leave->user->l_name.'('.$leave->user->roles[0]->display_name.') Leave: '.$leave->type.' ('.$leave->category.')',
               'location' => '',
               'visibility' => 'private',
               'description' => $leave->comments,
-              'start' => array(
+              'start' => [
                 'date' => $leave->start_date,
                 'timeZone' => $leave->user->employee->time_zone,
-              ),
-              'end' => array(
+              ],
+              'end' => [
                 'date' => $leave->end_date,
                 'timeZone' => $leave->user->employee->time_zone,
-              ),
-              'attendees' => array(
-                array('email' => $leave->user->email),
-                array('email' => Auth::user()->email),
-              ),
-              'reminders' => array(
+              ],
+              'attendees' => [
+                ['email' => $leave->user->email],
+                ['email' => Auth::user()->email],
+              ],
+              'reminders' => [
                 'useDefault' => false,
-                'overrides' => array(
-                  array('method' => 'email', 'minutes' => 24 * 60),
-                  array('method' => 'popup', 'minutes' => 10),
-                ),
-              ),
-            ));
+                'overrides' => [
+                  ['method' => 'email', 'minutes' => 24 * 60],
+                  ['method' => 'popup', 'minutes' => 10],
+                ],
+              ],
+            ]);
             //dd($post->id);
 
         if ($post) {

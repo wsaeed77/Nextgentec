@@ -62,22 +62,22 @@ class FilemanagerController extends Controller
     public function getConnection()
     {
         if (!empty(Session::get('cust_id'))) {
-            $extra = array(
+            $extra = [
                           "source" => $this->path,//$path,
                           "url" => url('/'),
                           "doc_root"=>'',
                           'c_folder' => $this->folder,
-                          "ext" => array("jpg","jpeg","gif","png","svg","txt","pdf","odp","ods","odt","rtf","doc","docx","xls","xlsx","ppt","pptx","csv","ogv","mp4","webm","m4v","ogg","mp3","wav","zip","rar"),
-                                "upload" => array(
+                          "ext" => ["jpg","jpeg","gif","png","svg","txt","pdf","odp","ods","odt","rtf","doc","docx","xls","xlsx","ppt","pptx","csv","ogv","mp4","webm","m4v","ogg","mp3","wav","zip","rar"],
+                                "upload" => [
                                     "number" => 5,
                                     "overwrite" => false,
                                     "size_max" => 10
-                                    ),
-                                "images" => array(
-                                    "images_ext" => array("jpg","jpeg","gif","png"),
-                                    "resize" => array("thumbWidth" => 120,"thumbHeight" => 90)
-                                    ),
-                        );
+                                    ],
+                                "images" => [
+                                    "images_ext" => ["jpg","jpeg","gif","png"],
+                                    "resize" => ["thumbWidth" => 120,"thumbHeight" => 90]
+                                    ],
+                        ];
                 $f = new FilemanagerService($extra);
                 $f->run();
         }
@@ -96,22 +96,22 @@ class FilemanagerController extends Controller
 
        // Storage::disk('local')->makeDirectory('customer_files');
         if (!empty(Session::get('cust_id'))) {
-              $extra = array(
+              $extra = [
                              "source" => $this->path,
                              "url" => url('/'),
                              "doc_root"=>'',
                              'c_folder' => $this->folder,
-                             "ext" => array("jpg","jpeg","gif","png","svg","txt","pdf","odp","ods","odt","rtf","doc","docx","xls","xlsx","ppt","pptx","csv","ogv","mp4","webm","m4v","ogg","mp3","wav","zip","rar"),
-                              "upload" => array(
+                             "ext" => ["jpg","jpeg","gif","png","svg","txt","pdf","odp","ods","odt","rtf","doc","docx","xls","xlsx","ppt","pptx","csv","ogv","mp4","webm","m4v","ogg","mp3","wav","zip","rar"],
+                              "upload" => [
                                   "number" => 5,
                                   "overwrite" => false,
                                   "size_max" => 10
-                                  ),
-                              "images" => array(
-                                  "images_ext" => array("jpg","jpeg","gif","png"),
-                                  "resize" => array("thumbWidth" => 120,"thumbHeight" => 90)
-                                  ),
-                          );
+                                  ],
+                              "images" => [
+                                  "images_ext" => ["jpg","jpeg","gif","png"],
+                                  "resize" => ["thumbWidth" => 120,"thumbHeight" => 90]
+                                  ],
+                          ];
               /*$extra = array(
                              "source" =>  url(URL::route('get.user_files.thumb', ['folder' =>  $this->folder])),
                              "url" => url('/'),

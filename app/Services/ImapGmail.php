@@ -43,7 +43,7 @@ class ImapGmail
                 // print_r( $message);
                 // exit;
                //dd( $structure);
-                $attachments = array();
+                $attachments = [];
              
                 $files = [];
                   //if(isset($structure->parts) && count($structure->parts) && $structure->type==1) {
@@ -221,7 +221,7 @@ class ImapGmail
                 // print_r( $message);
                 // exit;
                //dd( $structure);
-                $attachments = array();
+                $attachments = [];
              
                 $files = [];
                   //if(isset($structure->parts) && count($structure->parts) && $structure->type==1) {

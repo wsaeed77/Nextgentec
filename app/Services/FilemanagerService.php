@@ -9,7 +9,7 @@ class FilemanagerService extends Filemanager
 {
     private $config;
     private $c_folder;
-    private $fileDetails = array(
+    private $fileDetails = [
         "urlfolder" => '',
         "filename" => "",
         "filetype" => "",
@@ -18,7 +18,7 @@ class FilemanagerService extends Filemanager
         "previewfull" => "",
         "preview" => "",
         "size" => "",
-        );
+        ];
 
     function __construct($filemanager)
     {
@@ -73,16 +73,16 @@ class FilemanagerService extends Filemanager
             //echo $this->getMaxUploadFileSize();
                 //exit;
             if ($file->getClientSize() > ($this->getMaxUploadFileSize() * 1024 * 1024)) {
-                $result = array("query"=>"BE_UPLOAD_FILE_SIZE_NOT_SERVER","params"=>array($file->getClientSize()));
-                $this->setInfo(array("msg"=>$result));
+                $result = ["query"=>"BE_UPLOAD_FILE_SIZE_NOT_SERVER","params"=>[$file->getClientSize()]];
+                $this->setInfo(["msg"=>$result]);
 
                 if ($this->config['debug']) {
                     $this->_log(__METHOD__." - file size no permitido server: ".$file->getClientSize());
                 }
                 return ;
             } elseif ($file->getClientSize() > ($this->config['upload']['size_max'] * 1024 * 1024)) {
-                $result = array("query"=>"BE_UPLOAD_FILE_SIZE_NOT_PERMITIDO","params"=>array($file->getClientSize()));
-                $this->setInfo(array("msg"=>$result));
+                $result = ["query"=>"BE_UPLOAD_FILE_SIZE_NOT_PERMITIDO","params"=>[$file->getClientSize()]];
+                $this->setInfo(["msg"=>$result]);
 
                 if ($this->config['debug']) {
                     $this->_log(__METHOD__." - file size no permitido: ".$file->getClientSize());
