@@ -162,7 +162,9 @@ return [
         Yajra\Datatables\DatatablesServiceProvider::class,
         Vluzrmos\SlackApi\SlackApiServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
-        Intervention\Httpauth\HttpauthServiceProvider::class
+        Intervention\Httpauth\HttpauthServiceProvider::class,
+
+        'Tymon\JWTAuth\Providers\JWTAuthServiceProvider',
     ],
 
     /*
@@ -236,7 +238,8 @@ return [
         'SlackTeam'             => Vluzrmos\SlackApi\Facades\SlackTeam::class,
         // ...
         'Uuid'                  => Webpatser\Uuid\Uuid::class,
-        'Httpauth'              => Intervention\Httpauth\Facades\Httpauth::class
+        'Httpauth'              => Intervention\Httpauth\Facades\Httpauth::class,
+        'JWTAuth' => 'Tymon\JWTAuth\Facades\JWTAuth'
     ],
 
 ];

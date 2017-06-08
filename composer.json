@@ -14,14 +14,15 @@
         "zizaco/entrust": "dev-laravel-5",
         "laravelcollective/html": "^5.2.0",
         "guzzlehttp/guzzle": "~6.0",
-        "caffeinated/modules": "2.1.11",
+         "caffeinated/modules": "~2.0",
         "google/apiclient": "1.*",
         "vluzrmos/slack-api": "^0.4.8",
         "intervention/image": "^2.3",
         "yajra/laravel-datatables-oracle": "^6.10",
         "guillermomartinez/filemanager-php": "0.1.*",
         "webpatser/laravel-uuid": "2.*",
-        "intervention/httpauth": "^2.0"
+        "intervention/httpauth": "^2.0",
+        "tymon/jwt-auth": "^0.5.12"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

@@ -10,7 +10,7 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
+Route::group(['middleware' => 'web'], function () {
 Route::get('/', 'AdminController@getLogin');
 Route::get('admin/login', 'AdminController@getLogin');
 Route::post('admin/login', 'AdminController@postLogin');
@@ -162,3 +162,20 @@ Route::post('/image', ['as'=>'upload.image', 'uses' => 'ImageController@imageUpl
 Route::get('/get_token', ['as'=>'get_token',  'uses' => 'SettingController@getToken']);
 Route::get('/send_mail', ['as'=>'send_mail',  'uses' => 'TestEmailController@sendEmail']);
 Route::get('/get_slack_token', ['as'=>'admin.setting.get_slack_token', 'uses' => 'SlackController@getToken']);
+
+});
+
+Route::group(['middleware' => ['api'],'prefix' => 'api'], function () {
+
+
+    Route::post('register', 'APIController@register');
+
+    Route::post('login', 'APIController@login');
+
+    Route::group(['middleware' => 'jwt-auth'], function () {
+
+      Route::post('get_user_details', 'APIController@get_user_details');
+
+    });
+
+});
